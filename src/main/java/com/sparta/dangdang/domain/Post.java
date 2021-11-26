@@ -24,12 +24,18 @@ public class Post {
     private String main_image_path;
     @Column(nullable = false)
     private String content;
+    @Column(nullable = false)
+    private String address;
+    @Column(nullable = false)
+    private Long like_count;
 
-    public Post(User writer, String update_date, String main_image_path, String content) {
+    public Post(User writer, String update_date, String main_image_path, String content, String address) {
         this.writer = writer;
         this.update_date = update_date;
         this.main_image_path = main_image_path;
         this.content = content;
+        this.address = address;
+        this.like_count = 0L;
     }
 
     public void setWriter(User writer) {

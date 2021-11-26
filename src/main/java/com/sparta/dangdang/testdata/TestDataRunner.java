@@ -31,8 +31,9 @@ public class TestDataRunner implements ApplicationRunner {
             String update_date = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(System.currentTimeMillis());
             String main_image_path = "test.png";
             String content = "내용_" + i;
+            String address = "서울시 마포구 아현아이파크";
 
-            postRepository.save(new Post(user, update_date, main_image_path, content));
+            postRepository.save(new Post(user, update_date, main_image_path, content, address));
         }
     }
 }

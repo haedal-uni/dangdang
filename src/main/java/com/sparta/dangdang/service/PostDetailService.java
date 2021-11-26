@@ -17,28 +17,26 @@ public class PostDetailService {
         this.userRepository = userRepository;
     }
 
-    public PostDetailResponseDto getPostDetail(Long post_idx) {
+    public PostDetailResponseDto getPostDetail(Long post_idx, String login_id) {
 
         Post post = postRepository.findById(post_idx).orElseThrow(
                 () -> new NullPointerException("해당 포스트가 없습니다.")
         );
 
-        String content = "테스트 내용 01";
+
 
         Boolean like = false;
-        Long like_count = 0L;
-        String address = "서울시 마포구 아현동 아이아이파크";
 
         return new PostDetailResponseDto(
                 post.getId(),
                 post.getMain_image_path(),
                 like,
-                like_count,
+                post.getLike_count(),
                 post.getWriter().getUser_id(),
                 post.getUpdate_date(),
                 post.getWriter().getUser_profile_img(),
-                address,
-                content
+                post.getAddress(),
+                post.getContent()
         );
     }
 }
