@@ -15,8 +15,9 @@ public class Post {
     @Id
     private Long id;
 
-    @Column(nullable = true)
-    private String user_id;
+    @ManyToOne
+    @JoinColumn(name = "writer_id")
+    private User writer;
     @Column(nullable = true)
     private String update_date;
     @Column(nullable = true)
@@ -24,10 +25,21 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    public Post(String user_id, String update_date, String main_image_path, String content) {
-        this.user_id = user_id;
+    public Post(User writer, String update_date, String main_image_path, String content) {
+        this.writer = writer;
         this.update_date = update_date;
         this.main_image_path = main_image_path;
         this.content = content;
+    }
+
+    public void setWriter(User writer) {
+        if(this.writer != null) {
+            this.writer.getWritten_posts().remove(this);
+        }
+        this.writer = writer;
+
+        if(!writer.getWritten_posts().contains(this)) {
+            writer.addWritePost(this);
+        }
     }
 }
