@@ -1,5 +1,7 @@
 # DangDang
-Our website is for pets.
+Our website is for pets.             
+We call our puppies by various nicknames, such as dang-dang and mung-mung.              
+Our website was also created with this in mind.
 
 <br>
 
