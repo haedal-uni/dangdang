@@ -36,6 +36,11 @@ sub-email address will be used for identification term, therefore please enter y
 
 <br>
 
+## Frontend Repository
+👉🏻 https://github.com/Lluora/DangDang-Front
+
+<br>
+
 ## Member
 - 천소연(팀장) [Tistory](https://lu-delight.tistory.com/)
 - 유제협 [Velog](https://velog.io/@yu_jep)
