@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <title>댕댕백서 - 상세보기</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/detail.css">
+
+    <link rel="stylesheet" href="styles/button.css">
+    <link rel="shortcut icon" href="imgs/instagram.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+        body {
+            background: #f2f2f2;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .search {
+            width: 100%;
+            position: relative;
+            display: flex;
+        }
+
+        .searchTerm {
+            width: 100%;
+            border: 3px solid rosybrown;
+            border-right: none;
+            padding: 5px;
+            height: 35px;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #9DBFAF;
+        }
+
+        .searchTerm:focus {
+            color: black;
+        }
+
+        .searchButton {
+            width: 40px;
+            height: 35px;
+            border: 1px solid rosybrown;
+            background: rosybrown;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /*!*Resize the wrap to see the search bar change!*!*/
+        /*.wrap {*/
+        /*    width: 90%;*/
+        /*    position: absolute;*/
+        /*    top: 100%;*/
+        /*    left: 50%;*/
+        /*    transform: translate(-50%, -50%);*/
+        /*}*/
+
+
+        /* 글 작성하기 */
+        .board-write {
+            font-size: 16px;
+            border: none;
+        }
+
+        #writer {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<script>
+    let num=0;
+    function counter() {
+       num+=1
+        if (num>0) {
+            $("#writer").hide();
+        }
+    }
+
+    function clickclick() {
+        $("#writer").show();
+    }
+</script>
+
+<section id="container">
+
+
+    <header id="header">
+        <section class="h_inner">
+
+            <h1 class="logo">
+                <a href="index.html">
+                    <div class="sprite_insta_icon"></div>
+                    <div>
+                        <div class="sprite_write_logo"></div>
+                    </div>
+                </a>
+            </h1>
+
+            <div class="right_icons">
+                <a href="new_post.html">
+                    <div class="sprite_camera_icon"></div>
+                </a>
+                <a href="profile.html">
+                    <div class="sprite_user_icon_outline"></div>
+                </a>
+            </div>
+        </section>
+    </header>
+
+
+    <div id="main_container">
+
+        <section class="b_inner">
+            <div class="side_box">
+                <div class="user_profile">
+                    <div class="main_profile_thumb">
+                        <img src="images/thumb.jpeg" alt="프로필사진">
+                    </div>
+                    <div class="detail">
+                        <div class="id m_text">@punpun <i class="fas fa-pencil-alt"></i></div>
+                    </div>
+                </div>
+                <article class="story">
+                    <header class="story_header">
+                        <div>오늘의 댕댕이</div>
+                    </header>
+
+                    <div class="scroll_inner">
+                        <div class="thumb_user">
+                            <div class="profile_thumb">
+                                <img src="images/thumb02.jpg" alt="프로필사진">
+                            </div>
+                            <div class="detail">
+                                <div class="id">1등 kind_tigerrrr</div>
+                                <div class="time">1시간 전</div>
+                            </div>
+                        </div>
+                        <div class="thumb_user">
+                            <div class="profile_thumb">
+                                <img src="images/thumb02.jpg" alt="프로필사진">
+                            </div>
+                            <div class="detail">
+                                <div class="id">2등 kind_tigerrrr</div>
+                                <div class="time">1시간 전</div>
+                            </div>
+                        </div>
+                        <div class="thumb_user">
+                            <div class="profile_thumb">
+                                <img src="images/thumb02.jpg" alt="프로필사진">
+                            </div>
+                            <div class="detail">
+                                <div class="id">3등 kind_tigerrrr</div>
+                                <div class="time">1시간 전</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="contents_box">
+
+
+                <article class="contents cont01">
+
+                    <!-- image -->
+                    <div class="img_section">
+                        <div class="trans_inner">
+                            <div><img src="images/img_section/coco.jpg" alt=""></div>
+                        </div>
+                    </div>
+
+                    <div class="content_section">
+
+
+                        <div class="box">
+                            <select>
+                                <option>미니핀 (1살)</option>
+                                <option>미니핀 (5살)</option>
+                                <option>미니핀 (7살)</option>
+                                <option>푸들 (5살)</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                        <!-- 위치 등록 -->
+                        <div class="detail--right_box">
+                            <header class="top">
+                                <!--    <div class="wrap"> -->
+                                <div class="search">
+                                    <input onkeydown="counter()" type="text" class="searchTerm" placeholder="위치 등록">
+                                    <button type="submit" class="searchButton" onclick="clickclick()">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <!--  </div> -->
+                            </header>
+
+
+                            <!-- 글 작성하기 -->
+                            <section class="scroll_section">
+                                <div id="writer" class="user_container-detail">
+                                <textarea class="board-write" rows="22" cols=30 wrap="hard" required
+                                          placeholder="글 작성하기"></textarea>
+                                </div>
+                            </section>
+
+
+                            <div class="add_button">
+                                <div class="button1">등록하기</div>
+                            </div>
+                        </div>
+                </article>
+
+
+            </div>
+        </section>
+    </div>
+
+
+    <div class="del_pop">
+        <div class="btn_box">
+            <div class="del">삭제</div>
+            <div class="cancel">취소</div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">수정</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-danger">삭제</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/3719d7b7e9.js" crossorigin="anonymous"></script>
+<!--<script src="js/detail.js"></script>-->
+
+<!-- <script src='./scripts/dk.js'></script> -->
+</body>
+</html>
