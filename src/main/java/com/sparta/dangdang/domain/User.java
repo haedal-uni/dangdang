@@ -25,20 +25,22 @@ public class User {
     @OneToMany(mappedBy = "writer")
     private List<Post> written_posts = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "user__like_post")
+    private List<Post> like_posts = new ArrayList<>();
+
     public User(String user_id) {
         this.user_id = user_id;
     }
 
-    public User(String user_id, String user_profile_img) {
-        this.user_id = user_id;
-        this.user_profile_img = user_profile_img;
-    }
-
     public void addWritePost(Post post) {
         this.written_posts.add(post);
-
         if(post.getWriter() != this) {
             post.setWriter(this);
         }
+    }
+
+    public void addLikePost(Post post) {
+        this.like_posts.add(post);
     }
 }

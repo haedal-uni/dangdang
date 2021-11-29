@@ -23,8 +23,6 @@ public class PostDetailService {
                 () -> new NullPointerException("해당 포스트가 없습니다.")
         );
 
-
-
         Boolean like = false;
 
         return new PostDetailResponseDto(

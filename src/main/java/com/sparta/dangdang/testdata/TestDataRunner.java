@@ -7,6 +7,7 @@ import com.sparta.dangdang.repository.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 
@@ -21,19 +22,19 @@ public class TestDataRunner implements ApplicationRunner {
     }
 
     @Override
+    @Transactional
     public void run(ApplicationArguments args) throws Exception {
-
         User user = new User("manijang2");
         userRepository.save(user);
 
-        for (int i = 0; i < 100; i++) {
+        String update_date = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(System.currentTimeMillis());
+        String main_image_path = "test.png";
+        String content = "내용_01";
+        String address = "서울시 마포구 아현아이파크";
 
-            String update_date = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(System.currentTimeMillis());
-            String main_image_path = "test.png";
-            String content = "내용_" + i;
-            String address = "서울시 마포구 아현아이파크";
+        Post post = new Post(user, update_date, main_image_path, content, address);
+        postRepository.save(post);
 
-            postRepository.save(new Post(user, update_date, main_image_path, content, address));
-        }
+        user.addLikePost(post);
     }
 }
