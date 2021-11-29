@@ -28,3 +28,9 @@ hs_err_pid*
 /settings.gradle
 /gradlew.bat
 /.gradle
+
+/*.lock.db
+/*.mv.db
+/*.trace.db
+
+/build
