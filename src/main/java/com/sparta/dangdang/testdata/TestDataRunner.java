@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 
-@Component
+// @Component
 public class TestDataRunner implements ApplicationRunner {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
