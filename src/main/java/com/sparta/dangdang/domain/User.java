@@ -30,11 +30,4 @@ public class User {
     public User(String user_id) {
         this.user_id = user_id;
     }
-
-    public void addWritePost(Post post) {
-        this.written_posts.add(post);
-        if(post.getWriter() != this) {
-            post.setWriter(this);
-        }
-    }
 }

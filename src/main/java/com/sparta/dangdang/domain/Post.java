@@ -35,7 +35,7 @@ public class Post {
     private final List<PostLikeUser> likeUsers = new ArrayList<>();
 
     public Post(User writer, String update_date, String main_image_path, String content, String address) {
-        this.writer = writer;
+        setWriter(writer);
         this.update_date = update_date;
         this.main_image_path = main_image_path;
         this.content = content;
@@ -44,13 +44,10 @@ public class Post {
     }
 
     public void setWriter(User writer) {
-        if(this.writer != null) {
-            this.writer.getWritten_posts().remove(this);
-        }
         this.writer = writer;
 
         if(!writer.getWritten_posts().contains(this)) {
-            writer.addWritePost(this);
+            writer.getWritten_posts().add(this);
         }
     }
 
