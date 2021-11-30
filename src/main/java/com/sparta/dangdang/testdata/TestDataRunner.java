@@ -1,7 +1,9 @@
 package com.sparta.dangdang.testdata;
 
 import com.sparta.dangdang.domain.Post;
+import com.sparta.dangdang.domain.PostLikeUser;
 import com.sparta.dangdang.domain.User;
+import com.sparta.dangdang.repository.PostLikeUserRepository;
 import com.sparta.dangdang.repository.PostRepository;
 import com.sparta.dangdang.repository.UserRepository;
 import org.springframework.boot.ApplicationArguments;
@@ -11,14 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 
-// @Component
+@Component
 public class TestDataRunner implements ApplicationRunner {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final PostLikeUserRepository postLikeUserRepository;
 
-    public TestDataRunner(PostRepository postRepository, UserRepository userRepository) {
+    public TestDataRunner(PostRepository postRepository, UserRepository userRepository, PostLikeUserRepository postLikeUserRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
+        this.postLikeUserRepository = postLikeUserRepository;
     }
 
     @Override
@@ -35,6 +39,9 @@ public class TestDataRunner implements ApplicationRunner {
         Post post = new Post(user, update_date, main_image_path, content, address);
         postRepository.save(post);
 
-        user.addLikePost(post);
+        post.addLikeUser(user);
+
+        PostLikeUser postLikeUser = new PostLikeUser(post, user);
+        postLikeUserRepository.save(postLikeUser);
     }
 }

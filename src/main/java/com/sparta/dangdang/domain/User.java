@@ -1,7 +1,6 @@
 package com.sparta.dangdang.domain;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,11 +22,10 @@ public class User {
     private String user_profile_img;
 
     @OneToMany(mappedBy = "writer")
-    private List<Post> written_posts = new ArrayList<>();
+    private final List<Post> written_posts = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "user__like_post")
-    private List<Post> like_posts = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private final List<PostLikeUser> likePosts = new ArrayList<>();
 
     public User(String user_id) {
         this.user_id = user_id;
@@ -38,9 +36,5 @@ public class User {
         if(post.getWriter() != this) {
             post.setWriter(this);
         }
-    }
-
-    public void addLikePost(Post post) {
-        this.like_posts.add(post);
     }
 }

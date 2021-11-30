@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,6 +31,9 @@ public class Post {
     @Column(nullable = false)
     private Long like_count;
 
+    @OneToMany(mappedBy = "post")
+    private final List<PostLikeUser> likeUsers = new ArrayList<>();
+
     public Post(User writer, String update_date, String main_image_path, String content, String address) {
         this.writer = writer;
         this.update_date = update_date;
@@ -47,5 +52,11 @@ public class Post {
         if(!writer.getWritten_posts().contains(this)) {
             writer.addWritePost(this);
         }
+    }
+
+    public void addLikeUser(User likeUser) {
+        PostLikeUser postLikeUser = new PostLikeUser(this, likeUser);
+        likeUsers.add(postLikeUser);
+        likeUser.getLikePosts().add(postLikeUser);
     }
 }
