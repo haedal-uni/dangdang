@@ -14,20 +14,20 @@ import java.util.List;
 public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private Long id;
+    private Long idx;
 
     @Column(nullable = true)
-    private String user_id;
+    private String userId;
     @Column(nullable = true)
-    private String user_profile_img;
+    private String userProfileImg;
 
     @OneToMany(mappedBy = "writer")
-    private final List<Post> written_posts = new ArrayList<>();
+    private final List<Post> writtenPosts = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private final List<PostLikeUser> likePosts = new ArrayList<>();
 
-    public User(String user_id) {
-        this.user_id = user_id;
+    public User(String userId) {
+        this.userId = userId;
     }
 }

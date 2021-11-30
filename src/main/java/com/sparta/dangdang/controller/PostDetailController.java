@@ -15,9 +15,9 @@ public class PostDetailController {
         this.postDetailService = postDetailService;
     }
 
-    @GetMapping("/api/post/{post_idx}")
-    public PostDetailResponseDto getArticles(@PathVariable Long post_idx){
-        String login_id = "manijang2";
-        return postDetailService.getPostDetail(post_idx, login_id);
+    @GetMapping("/api/post/{postIdx}")
+    public PostDetailResponseDto getArticles(@PathVariable Long postIdx){
+        String loginUserId = "manijang2";
+        return postDetailService.getPostDetail(postIdx, loginUserId);
     }
 }

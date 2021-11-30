@@ -9,14 +9,14 @@ import javax.persistence.*;
 public class PostLikeUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idx;
 
     @ManyToOne
-    @JoinColumn(name = "POST_ID")
+    @JoinColumn(name = "post_idx")
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = "UEER_ID")
+    @JoinColumn(name = "user_idx")
     private User user;
 
     public PostLikeUser(Post post, User user) {

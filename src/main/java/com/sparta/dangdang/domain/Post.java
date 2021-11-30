@@ -15,39 +15,39 @@ import java.util.List;
 public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private Long id;
+    private Long idx;
 
     @ManyToOne
-    @JoinColumn(name = "writer_id")
+    @JoinColumn(name = "idx")
     private User writer;
     @Column(nullable = true)
-    private String update_date;
+    private String updateDate;
     @Column(nullable = true)
-    private String main_image_path;
+    private String mainImagePath;
     @Column(nullable = false)
     private String content;
     @Column(nullable = false)
     private String address;
     @Column(nullable = false)
-    private Long like_count;
+    private Long likeCount;
 
     @OneToMany(mappedBy = "post")
     private final List<PostLikeUser> likeUsers = new ArrayList<>();
 
-    public Post(User writer, String update_date, String main_image_path, String content, String address) {
+    public Post(User writer, String updateDate, String mainImagePath, String content, String address) {
         setWriter(writer);
-        this.update_date = update_date;
-        this.main_image_path = main_image_path;
+        this.updateDate = updateDate;
+        this.mainImagePath = mainImagePath;
         this.content = content;
         this.address = address;
-        this.like_count = 0L;
+        this.likeCount = 0L;
     }
 
     public void setWriter(User writer) {
         this.writer = writer;
 
-        if(!writer.getWritten_posts().contains(this)) {
-            writer.getWritten_posts().add(this);
+        if(!writer.getWrittenPosts().contains(this)) {
+            writer.getWrittenPosts().add(this);
         }
     }
 
