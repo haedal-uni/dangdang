@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<!-- $.ajax is not a function  error 해결방법 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 
     <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -63,15 +66,6 @@
             font-size: 20px;
         }
 
-        /*!*Resize the wrap to see the search bar change!*!*/
-        /*.wrap {*/
-        /*    width: 90%;*/
-        /*    position: absolute;*/
-        /*    top: 100%;*/
-        /*    left: 50%;*/
-        /*    transform: translate(-50%, -50%);*/
-        /*}*/
-
 
         /* 글 작성하기 */
         .board-write {
@@ -98,6 +92,26 @@
     function clickclick() {
         $("#writer").show();
     }
+
+    function addButton() {
+        saveArticle()
+    }
+
+    function saveArticle() {
+        let content = $("#writerArticle").val()
+        $.ajax({
+            type: "POST",
+            url: `/api/upload`,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(content),
+            success: function (response) {
+                alert("게시글 작성 완료!");
+            }
+        })
+    }
+
+
+
 </script>
 
 <section id="container">
@@ -218,14 +232,14 @@
                             <!-- 글 작성하기 -->
                             <section class="scroll_section">
                                 <div id="writer" class="user_container-detail">
-                                <textarea class="board-write" rows="22" cols=30 wrap="hard" required
+                                <textarea id="writerArticle" class="board-write" rows="22" cols=30 wrap="hard" required
                                           placeholder="글 작성하기"></textarea>
                                 </div>
                             </section>
 
 
                             <div class="add_button">
-                                <div class="button1">등록하기</div>
+                                <div class="button1" onclick="addButton()">등록하기</div>
                             </div>
                         </div>
                 </article>
@@ -260,9 +274,13 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+
+<!-- ajax 오류 해결 방법 slim 제거 -->
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
