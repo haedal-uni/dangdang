@@ -18,7 +18,7 @@ public class Post {
     private Long idx;
 
     @ManyToOne
-    @JoinColumn(name = "idx")
+    @JoinColumn(name = "writer_idx")
     private User writer;                // 글 작성자
     @Column(nullable = true)
     private String updateDate;          // 글 생성일자 또는 변경일자
