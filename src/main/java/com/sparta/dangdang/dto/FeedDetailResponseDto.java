@@ -5,7 +5,7 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class feedDetailResponseDto {
+public class FeedDetailResponseDto {
     private Long feedIdx;
     private String mainImage;
     private Boolean like;
