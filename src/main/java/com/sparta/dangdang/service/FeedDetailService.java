@@ -7,8 +7,6 @@ import com.sparta.dangdang.repository.FeedLikeUserRepository;
 import com.sparta.dangdang.repository.FeedRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class FeedDetailService {
     private final FeedRepository feedRepository;
@@ -26,10 +24,11 @@ public class FeedDetailService {
         );
 
         Long loginUserIdx = feed.getWriter().getIdx();
-
-        List<FeedLikeUser> feedLikeUsers = feedLikeUserRepository.findByUserIdx(loginUserIdx);
-        System.out.println(feedLikeUsers);
-        Boolean like = false;
+        boolean like = false;
+        FeedLikeUser feedLikeUsers = feedLikeUserRepository.findByUserIdx(loginUserIdx);
+        if(feedLikeUsers != null) {
+            like = true;
+        }
 
         return new feedDetailResponseDto(
                 feed.getIdx(),
