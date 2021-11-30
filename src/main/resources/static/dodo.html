@@ -98,15 +98,14 @@
 
 
     function saveArticle() {
-        //let content = $("#writerArticle").val()
-        let content = document.getElementById("#writerArticle");
+        let content = {"content":$("#writerArticle").val()}
         $.ajax({
             type: "POST",
             url: `/api/upload`,
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(content),
             success: function (response) {
-                alert("게시글 작성 완료!");
+                alert(content);
             }
         });
     }
