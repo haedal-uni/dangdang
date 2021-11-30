@@ -1,10 +1,10 @@
 package com.sparta.dangdang.testdata;
 
-import com.sparta.dangdang.domain.Post;
-import com.sparta.dangdang.domain.PostLikeUser;
+import com.sparta.dangdang.domain.Feed;
+import com.sparta.dangdang.domain.FeedLikeUser;
 import com.sparta.dangdang.domain.User;
-import com.sparta.dangdang.repository.PostLikeUserRepository;
-import com.sparta.dangdang.repository.PostRepository;
+import com.sparta.dangdang.repository.FeedLikeUserRepository;
+import com.sparta.dangdang.repository.FeedRepository;
 import com.sparta.dangdang.repository.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,16 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 
-@Component
+// @Component
 public class TestDataRunner implements ApplicationRunner {
-    private final PostRepository postRepository;
+    private final FeedRepository feedRepository;
     private final UserRepository userRepository;
-    private final PostLikeUserRepository postLikeUserRepository;
+    private final FeedLikeUserRepository feedLikeUserRepository;
 
-    public TestDataRunner(PostRepository postRepository, UserRepository userRepository, PostLikeUserRepository postLikeUserRepository) {
-        this.postRepository = postRepository;
+    public TestDataRunner(FeedRepository feedRepository, UserRepository userRepository, FeedLikeUserRepository feedLikeUserRepository) {
+        this.feedRepository = feedRepository;
         this.userRepository = userRepository;
-        this.postLikeUserRepository = postLikeUserRepository;
+        this.feedLikeUserRepository = feedLikeUserRepository;
     }
 
     @Override
@@ -36,12 +36,12 @@ public class TestDataRunner implements ApplicationRunner {
         String content = "내용_01";
         String address = "서울시 마포구 아현아이파크";
 
-        Post post = new Post(user, update_date, main_image_path, content, address);
-        postRepository.save(post);
+        Feed feed = new Feed(user, update_date, main_image_path, content, address);
+        feedRepository.save(feed);
 
-        post.addLikeUser(user);
+        feed.addLikeUser(user);
 
-        PostLikeUser postLikeUser = new PostLikeUser(post, user);
-        postLikeUserRepository.save(postLikeUser);
+        FeedLikeUser feedLikeUser = new FeedLikeUser(feed, user);
+        feedLikeUserRepository.save(feedLikeUser);
     }
 }

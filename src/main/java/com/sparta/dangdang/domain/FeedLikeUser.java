@@ -6,21 +6,21 @@ import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class PostLikeUser {
+public class FeedLikeUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
     @ManyToOne
-    @JoinColumn(name = "post_idx")
-    private Post post;                  // 좋아요한 포스트
+    @JoinColumn(name = "feedIdx")
+    private Feed feed;                  // 좋아요한 포스트
 
     @ManyToOne
-    @JoinColumn(name = "user_idx")
+    @JoinColumn(name = "userIdx")
     private User user;                  // 좋아요 누른 사용자
 
-    public PostLikeUser(Post post, User user) {
-        this.post = post;
+    public FeedLikeUser(Feed feed, User user) {
+        this.feed = feed;
         this.user = user;
     }
 }

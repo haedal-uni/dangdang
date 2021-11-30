@@ -12,13 +12,13 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Feed {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long idx;
 
     @ManyToOne
-    @JoinColumn(name = "writer_idx")
+    @JoinColumn(name = "writerIdx")
     private User writer;                // 글 작성자
     @Column(nullable = true)
     private String updateDate;          // 글 생성일자 또는 변경일자
@@ -31,10 +31,10 @@ public class Post {
     @Column(nullable = false)
     private Long likeCount;             // 글 좋아요 개수
 
-    @OneToMany(mappedBy = "post")
-    private final List<PostLikeUser> likeUsers = new ArrayList<>();
+    @OneToMany(mappedBy = "feed")
+    private final List<FeedLikeUser> likeUsers = new ArrayList<>();
 
-    public Post(User writer, String updateDate, String mainImagePath, String content, String address) {
+    public Feed(User writer, String updateDate, String mainImagePath, String content, String address) {
         setWriter(writer);
         this.updateDate = updateDate;
         this.mainImagePath = mainImagePath;
@@ -46,14 +46,14 @@ public class Post {
     public void setWriter(User writer) {
         this.writer = writer;
 
-        if(!writer.getWrittenPosts().contains(this)) {
-            writer.getWrittenPosts().add(this);
+        if(!writer.getWrittenFeeds().contains(this)) {
+            writer.getWrittenFeeds().add(this);
         }
     }
 
     public void addLikeUser(User likeUser) {
-        PostLikeUser postLikeUser = new PostLikeUser(this, likeUser);
-        likeUsers.add(postLikeUser);
-        likeUser.getLikePosts().add(postLikeUser);
+        FeedLikeUser feedLikeUser = new FeedLikeUser(this, likeUser);
+        likeUsers.add(feedLikeUser);
+        likeUser.getLikeFeeds().add(feedLikeUser);
     }
 }

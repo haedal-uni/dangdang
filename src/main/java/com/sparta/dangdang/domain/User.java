@@ -22,10 +22,10 @@ public class User {
     private String userProfileImg;  // 사용자 프로필 아이디
 
     @OneToMany(mappedBy = "writer")
-    private final List<Post> writtenPosts = new ArrayList<>();          // 내가 작성한 포스트
+    private final List<Feed> writtenFeeds = new ArrayList<>();          // 내가 작성한 포스트
 
     @OneToMany(mappedBy = "user")
-    private final List<PostLikeUser> likePosts = new ArrayList<>();     // 내가 좋아요를 누른 포스트
+    private final List<FeedLikeUser> likeFeeds = new ArrayList<>();     // 내가 좋아요를 누른 포스트
 
     public User(String userId) {
         this.userId = userId;
