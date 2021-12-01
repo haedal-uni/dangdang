@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -35,8 +36,14 @@ public class Comment {
     @CreatedDate
     LocalDateTime createDate;
 
-    public Comment(User commentUser, String content) {
+    public Comment(User commentUser, String content, Feed feed) {
         this.commentUser = commentUser;
         this.content = content;
+        writeComment(feed);
+    }
+
+    private void writeComment(Feed feed) {
+        this.feed = feed;
+        feed.getComments().add(this);
     }
 }

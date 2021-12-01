@@ -13,8 +13,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
-
 @Component
 public class TestDataRunner implements ApplicationRunner {
     private final FeedRepository feedRepository;
@@ -45,7 +43,7 @@ public class TestDataRunner implements ApplicationRunner {
         FeedLikeUser feedLikeUser = new FeedLikeUser(feed, user);
         feedLikeUserRepository.save(feedLikeUser);
 
-        Comment comment = new Comment(user, "코멘트 내용 01");
+        Comment comment = new Comment(user, "코가멘트 내용 01", feed);
         commentRepository.save(comment);
     }
 }
