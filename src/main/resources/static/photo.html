@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #product_image {
+            background-size: cover;
+            background-position: 50%;
+        }
+
+    </style>
+    <script>
+
+        <!-- 이미지 미리보기 -->
+        function setThumbnail(event) {
+            let reader = new FileReader();
+
+            reader.onload = function (event) {
+                let img = document.createElement("img");
+                img.setAttribute("src", event.target.result);
+                img.setAttribute("width", 300);
+                img.setAttribute("height", 300)
+                img.setAttribute("class", "col-lg-6");
+                document.querySelector("div#image_container").appendChild(img);
+            };
+
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+
+
+<div class="form-group">
+    <input class="form-control form-control-user" type="file"
+           name="product_image" id="product_image" onchange="setThumbnail(event);">
+</div>
+<div id="image_container"></div>
+
+
+</body>
+</html>

@@ -78,6 +78,12 @@
         }
 
 
+        /* 이미지 업로드 화면 비율 맞추기 */
+        #product_image {
+            background-size: cover;
+            background-position: 50%;
+        }
+
 
     </style>
 </head>
@@ -110,6 +116,24 @@
         });
     }
 
+
+
+
+    <!-- 이미지 미리보기 -->
+    function setThumbnail(event) {
+        let reader = new FileReader();
+
+        reader.onload = function (event) {
+            let img = document.createElement("img");
+            img.setAttribute("src", event.target.result);
+            img.setAttribute("width", 300);
+            img.setAttribute("height", 300)
+            img.setAttribute("class", "col-lg-6");
+            document.querySelector("div#image_container").appendChild(img);
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+    }
 
 
 </script>
@@ -193,17 +217,25 @@
 
 
                 <article class="contents cont01">
-
                     <!-- image -->
                     <div class="img_section">
                         <div class="trans_inner">
-                            <div><img src="images/img_section/coco.jpg" alt=""></div>
+
+                            <!-- 이미지 업로드 -->
+                            <div class="form-group">
+                                <input class="form-control form-control-user" type="file"
+                                       name="product_image" id="product_image" onchange="setThumbnail(event);">
+                            </div>
+                            <!-- <div><img src="images/img_section/coco.jpg" alt=""></div> -->
+                            <div id ="image_container"></div>
+
                         </div>
                     </div>
 
+
+
+
                     <div class="content_section">
-
-
                         <div class="box">
                             <select>
                                 <option>미니핀 (1살)</option>
