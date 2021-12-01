@@ -15,9 +15,15 @@ public class UploadController {
     private final UploadService uploadService;
 
     @PostMapping("/api/upload")
-    public Upload setUpload(@RequestBody UploadDto uploadDto){
+    public Upload setUpload(@RequestBody UploadDto uploadDto) {
         return uploadService.setUpload(uploadDto);
     }
 
-    //@GetMapping("/api/upload")
 }
+//    @PostMapping("/api/upload/image"){
+//        public Upload setPhoto(@RequestBody PhotoDto photoDto {
+//            return uploadService.setPhoto(photoDto);
+//        }
+    //}
+    //@GetMapping("/api/upload")
+

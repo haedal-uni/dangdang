@@ -21,7 +21,11 @@ public class Upload extends Timestamped {
     @Column(nullable = false)
     private String content;
 
+    @Column(nullable = false)
+    private String file;
+
     public Upload(UploadDto uploadDto) {
         this.content = uploadDto.getContent();
+        this.file = uploadDto.getFile();
     }
 }

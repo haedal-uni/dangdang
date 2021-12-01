@@ -7,4 +7,5 @@ import lombok.Setter;
 @Getter
 public class UploadDto {
     private String content;
+    private String file;
 }

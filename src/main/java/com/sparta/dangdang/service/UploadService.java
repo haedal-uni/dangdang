@@ -20,4 +20,11 @@ public class UploadService {
         uploadRepository.save(upload);
         return upload;
     }
+
+//    @Transactional
+//    public setPhoto(PhotoDto photoDto {
+//        Upload upload = new Upload(uploadDto);
+//        uploadRepository.save(upload);
+//        return upload;
+//    }
 }
