@@ -3,8 +3,11 @@ package com.sparta.dangdang.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Feed {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
@@ -20,8 +24,8 @@ public class Feed {
     @ManyToOne
     @JoinColumn(name = "writerIdx")
     private User writer;                // 글 작성자
-    @Column(nullable = true)
-    private String updateDate;          // 글 생성일자 또는 변경일자
+    @CreatedDate
+    private LocalDateTime createdDate;  // 글 생성일자
     @Column(nullable = true)
     private String mainImagePath;       // 글 메인 이미지 파일명(ex-filename.png)
     @Column(nullable = false)
@@ -34,9 +38,8 @@ public class Feed {
     @OneToMany(mappedBy = "feed")
     private final List<FeedLikeUser> likeUsers = new ArrayList<>();
 
-    public Feed(User writer, String updateDate, String mainImagePath, String content, String address) {
+    public Feed(User writer, String mainImagePath, String content, String address) {
         setWriter(writer);
-        this.updateDate = updateDate;
         this.mainImagePath = mainImagePath;
         this.content = content;
         this.address = address;

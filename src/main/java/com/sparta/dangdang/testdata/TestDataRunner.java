@@ -31,12 +31,11 @@ public class TestDataRunner implements ApplicationRunner {
         User user = new User("manijang2");
         userRepository.save(user);
 
-        String update_date = new SimpleDateFormat("yyyy년MM월dd일 HH시mm분").format(System.currentTimeMillis());
         String main_image_path = "test.png";
         String content = "내용_01";
         String address = "서울시 마포구 아현아이파크";
 
-        Feed feed = new Feed(user, update_date, main_image_path, content, address);
+        Feed feed = new Feed(user, main_image_path, content, address);
         feedRepository.save(feed);
 
         feed.addLikeUser(user);
