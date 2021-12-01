@@ -3,6 +3,7 @@ package com.sparta.dangdang.service;
 import com.sparta.dangdang.domain.Feed;
 import com.sparta.dangdang.domain.FeedLikeUser;
 import com.sparta.dangdang.domain.User;
+import com.sparta.dangdang.dto.CommentResponseDto;
 import com.sparta.dangdang.dto.FeedDetailResponseDto;
 import com.sparta.dangdang.dto.FeedLikeResponseDto;
 import com.sparta.dangdang.repository.FeedLikeUserRepository;
@@ -40,9 +41,9 @@ public class FeedDetailService {
                 feed.getMainImagePath(),
                 like,
                 feed.getLikeCount(),
-                feed.getWriter().getUserId(),
+                feed.getWriter().getNickName(),
                 feed.getCreatedDate().toString(),
-                feed.getWriter().getUserProfileImg(),
+                feed.getWriter().getProfileImgName(),
                 feed.getAddress(),
                 feed.getContent()
         );
@@ -72,5 +73,13 @@ public class FeedDetailService {
         }
 
         return new FeedLikeResponseDto(feedIdx, requestLike);
+    }
+
+    public CommentResponseDto getFeedComment(long feedIdx) {
+        Feed feed = feedRepository.findById(feedIdx).orElseThrow(
+                () -> new NullPointerException("해당 게시글이 없습니다.")
+        );
+
+        return new CommentResponseDto(feedIdx, feed.getComments());
     }
 }

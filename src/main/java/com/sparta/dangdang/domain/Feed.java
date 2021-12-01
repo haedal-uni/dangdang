@@ -1,5 +1,6 @@
 package com.sparta.dangdang.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,6 +40,7 @@ public class Feed {
     private final List<FeedLikeUser> likeUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "feed")
+    @JsonBackReference
     private final List<Comment> comments = new ArrayList<>();
 
     public Feed(User writer, String mainImagePath, String content, String address) {

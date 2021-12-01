@@ -30,10 +30,10 @@ public class TestDataRunner implements ApplicationRunner {
     @Override
     @Transactional
     public void run(ApplicationArguments args) throws Exception {
-        User user = new User("manijang2");
+        User user = new User("manijang2", "thumb.jpeg");
         userRepository.save(user);
 
-        String main_image_path = "test.png";
+        String main_image_path = "img03.jpg";
         String content = "내용_01";
         String address = "서울시 마포구 아현아이파크";
 
@@ -43,7 +43,9 @@ public class TestDataRunner implements ApplicationRunner {
         FeedLikeUser feedLikeUser = new FeedLikeUser(feed, user);
         feedLikeUserRepository.save(feedLikeUser);
 
-        Comment comment = new Comment(user, "코가멘트 내용 01", feed);
-        commentRepository.save(comment);
+        Comment comment1 = new Comment(user, "코멘트 내용 01", feed);
+        commentRepository.save(comment1);
+        Comment comment2 = new Comment(user, "코멘트 내용 02", feed);
+        commentRepository.save(comment2);
     }
 }

@@ -1,6 +1,7 @@
 package com.sparta.dangdang.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,10 +24,12 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "commentUser")
+    @JsonManagedReference
     User commentUser;       // 댓글 사용자
 
     @ManyToOne
     @JoinColumn(name = "feed")
+    @JsonManagedReference
     Feed feed;       // 댓글 사용자
 
 

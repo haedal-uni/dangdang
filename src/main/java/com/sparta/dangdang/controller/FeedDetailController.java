@@ -1,5 +1,7 @@
 package com.sparta.dangdang.controller;
 
+import com.sparta.dangdang.domain.Comment;
+import com.sparta.dangdang.dto.CommentResponseDto;
 import com.sparta.dangdang.dto.FeedDetailResponseDto;
 import com.sparta.dangdang.dto.FeedLikeRequestDto;
 import com.sparta.dangdang.dto.FeedLikeResponseDto;
@@ -24,5 +26,10 @@ public class FeedDetailController {
     @PutMapping("/api/feed/{feedIdx}/like")
     public FeedLikeResponseDto setFeedLike(@PathVariable Long feedIdx, @RequestBody FeedLikeRequestDto feedLikeRequestDto){
         return feedDetailService.setFeedLike(feedIdx, "manijang2", feedLikeRequestDto.getLike());
+    }
+
+    @GetMapping("/api/feed/{feedIdx}/comment")
+    public CommentResponseDto getFeedComment(@PathVariable Long feedIdx){
+        return feedDetailService.getFeedComment(feedIdx);
     }
 }
