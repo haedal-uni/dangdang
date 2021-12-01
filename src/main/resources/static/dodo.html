@@ -110,20 +110,16 @@
 
 
     function saveArticle() {
-        //let content = {"content":$("#writerArticle").val()}
-        //let file = {"file" : $('#product_image')[0].files[0] }
         let form_data = new FormData()
         form_data.append("content", $("#writerArticle").val())
-        form_data.append("file", $('#image_container')[0].attr("src"))
+        form_data.append("file", $("#product_image")[0].files[0])
 
         $.ajax({
             type: "POST",
             url: `/api/upload`,
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(form_data),
-            //data:form_data,
-            cache: false, //default 값으로 아래 3개 값에 false를 넣었다.
-            //contentType: false,
+            data:form_data,
+            cache: false,
             processData: false,
             success: function (response) {
                 alert("글 저장 성공!!");
@@ -135,14 +131,12 @@
 
 
 
-
-
-
     <!-- 이미지 미리보기 -->
     function setThumbnail(event) {
         let reader = new FileReader();
         reader.onload = function (event) {
             let img = document.createElement("img");
+            img.setAttribute("id", "imageUpload");
             img.setAttribute("src", event.target.result);
             img.setAttribute("width", 300);
             img.setAttribute("height", 300)
@@ -325,10 +319,12 @@
         </div>
     </div>
 </div>
+
 <!-- 파일 업로드 라이브러리 -->
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
-<!-- ajax 오류 해결 방법 slim 제거 -->
+
+<!-- ajax 오류 해결 방법 선만님 코드 slim 제거 -->
 <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script> -->
