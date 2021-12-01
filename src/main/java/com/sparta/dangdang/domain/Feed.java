@@ -38,6 +38,9 @@ public class Feed {
     @OneToMany(mappedBy = "feed")
     private final List<FeedLikeUser> likeUsers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "feed")
+    private final List<Comment> comments = new ArrayList<>();
+
     public Feed(User writer, String mainImagePath, String content, String address) {
         setWriter(writer);
         this.mainImagePath = mainImagePath;
@@ -52,11 +55,5 @@ public class Feed {
         if(!writer.getWrittenFeeds().contains(this)) {
             writer.getWrittenFeeds().add(this);
         }
-    }
-
-    public void addLikeUser(User likeUser) {
-        FeedLikeUser feedLikeUser = new FeedLikeUser(this, likeUser);
-        likeUsers.add(feedLikeUser);
-        likeUser.getLikeFeeds().add(feedLikeUser);
     }
 }

@@ -22,5 +22,8 @@ public class FeedLikeUser {
     public FeedLikeUser(Feed feed, User user) {
         this.feed = feed;
         this.user = user;
+
+        feed.getLikeUsers().add(this);
+        user.getLikeFeeds().add(this);
     }
 }
