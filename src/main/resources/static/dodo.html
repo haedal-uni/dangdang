@@ -117,9 +117,8 @@
         $.ajax({
             type: "POST",
             url: `/api/upload`,
-            contentType: 'application/json; charset=utf-8',
-            data:form_data,
-            cache: false,
+            data: form_data,
+            contentType: false,
             processData: false,
             success: function (response) {
                 alert("글 저장 성공!!");

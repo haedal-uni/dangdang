@@ -18,7 +18,7 @@ public class UploadController {
 
     @PostMapping("/api/upload")
     //public Upload setUpload(@RequestBody UploadDto uploadDto)
-    public Upload setUpload(UploadDto uploadDto, @RequestPart(value = "file", required = false) MultipartFile image){
+    public Upload setUpload(UploadDto uploadDto){
         return uploadService.setUpload(uploadDto);
     }
 
