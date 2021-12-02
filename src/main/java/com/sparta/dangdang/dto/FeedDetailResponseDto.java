@@ -10,7 +10,7 @@ public class FeedDetailResponseDto {
     private String mainImage;
     private Boolean like;
     private Long likeCount;
-    private String userId;
+    private String nickName;
     private String updateTime;
     private String userProfileImg;
     private String address;

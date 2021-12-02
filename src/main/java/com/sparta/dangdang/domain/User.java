@@ -29,8 +29,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private final List<FeedLikeUser> likeFeeds = new ArrayList<>();     // 내가 좋아요를 누른 포스트
 
-    public User(String userId, String userProfileImg) {
-        this.nickName = userId;
+    public User(String nickName, String userProfileImg) {
+        this.nickName = nickName;
         this.profileImgName = userProfileImg;
     }
 }

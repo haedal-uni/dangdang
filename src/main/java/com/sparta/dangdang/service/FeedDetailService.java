@@ -1,11 +1,14 @@
 package com.sparta.dangdang.service;
 
+import com.sparta.dangdang.domain.Comment;
 import com.sparta.dangdang.domain.Feed;
 import com.sparta.dangdang.domain.FeedLikeUser;
 import com.sparta.dangdang.domain.User;
 import com.sparta.dangdang.dto.CommentResponseDto;
+import com.sparta.dangdang.dto.CommonMsgResponseDto;
 import com.sparta.dangdang.dto.FeedDetailResponseDto;
 import com.sparta.dangdang.dto.FeedLikeResponseDto;
+import com.sparta.dangdang.repository.CommentRepository;
 import com.sparta.dangdang.repository.FeedLikeUserRepository;
 import com.sparta.dangdang.repository.FeedRepository;
 import com.sparta.dangdang.repository.UserRepository;
@@ -16,14 +19,16 @@ public class FeedDetailService {
     private final FeedRepository feedRepository;
     private final UserRepository userRepository;
     private final FeedLikeUserRepository feedLikeUserRepository;
+    private final CommentRepository commentRepository;
 
-    public FeedDetailService(FeedRepository feedRepository, UserRepository userRepository, FeedLikeUserRepository feedLikeUserRepository) {
+    public FeedDetailService(FeedRepository feedRepository, UserRepository userRepository, FeedLikeUserRepository feedLikeUserRepository, CommentRepository commentRepository) {
         this.feedRepository = feedRepository;
         this.userRepository = userRepository;
         this.feedLikeUserRepository = feedLikeUserRepository;
+        this.commentRepository = commentRepository;
     }
 
-    public FeedDetailResponseDto getFeedDetail(Long feedIdx, String loginUserId) {
+    public FeedDetailResponseDto getFeedDetail(Long feedIdx, String userNickName) {
 
         Feed feed = feedRepository.findById(feedIdx).orElseThrow(
                 () -> new NullPointerException("해당 게시글이 없습니다.")
@@ -49,13 +54,13 @@ public class FeedDetailService {
         );
     }
 
-    public FeedLikeResponseDto setFeedLike(Long feedIdx, String loginUserId, Boolean requestLike) {
+    public FeedLikeResponseDto setFeedLike(Long feedIdx, String userNickName, Boolean requestLike) {
 
         Feed feed = feedRepository.findById(feedIdx).orElseThrow(
                 () -> new NullPointerException("해당 게시글이 없습니다.")
         );
 
-        User loginUser = userRepository.findByUserId(loginUserId).orElseThrow(
+        User loginUser = userRepository.findByNickName(userNickName).orElseThrow(
                 () -> new NullPointerException("해당 사용자가 없습니다.")
         );
 
@@ -81,5 +86,30 @@ public class FeedDetailService {
         );
 
         return new CommentResponseDto(feedIdx, feed.getComments());
+    }
+
+    public CommonMsgResponseDto setFeedComment(Long feedIdx, String userNickName, String commentConent) {
+        User loginUser = userRepository.findByNickName(userNickName).orElseThrow(
+                () -> new NullPointerException("해당 사용자가 없습니다.")
+        );
+
+        Feed feed = feedRepository.findById(feedIdx).orElseThrow(
+                () -> new NullPointerException("해당 게시글이 없습니다.")
+        );
+
+        Comment comment = new Comment(loginUser, commentConent, feed);
+        commentRepository.save(comment);
+
+        return new CommonMsgResponseDto(200L, "댓글 등록이 성공하였습니다", null);
+    }
+
+    public CommonMsgResponseDto deleteFeedComment(Long commentIdx) {
+        Comment comment = commentRepository.findById(commentIdx).orElseThrow(
+                () -> new NullPointerException("해당 코멘트가 없습니다.")
+        );
+
+        commentRepository.delete(comment);
+
+        return new CommonMsgResponseDto(200L, "댓글를 삭제하는데 성공하였습니다", null);
     }
 }

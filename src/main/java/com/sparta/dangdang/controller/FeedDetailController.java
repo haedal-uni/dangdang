@@ -1,10 +1,6 @@
 package com.sparta.dangdang.controller;
 
-import com.sparta.dangdang.domain.Comment;
-import com.sparta.dangdang.dto.CommentResponseDto;
-import com.sparta.dangdang.dto.FeedDetailResponseDto;
-import com.sparta.dangdang.dto.FeedLikeRequestDto;
-import com.sparta.dangdang.dto.FeedLikeResponseDto;
+import com.sparta.dangdang.dto.*;
 import com.sparta.dangdang.service.FeedDetailService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +27,15 @@ public class FeedDetailController {
     @GetMapping("/api/feed/{feedIdx}/comment")
     public CommentResponseDto getFeedComment(@PathVariable Long feedIdx){
         return feedDetailService.getFeedComment(feedIdx);
+    }
+
+    @PutMapping("/api/feed/{feedIdx}/comment")
+    public CommonMsgResponseDto setFeedComment(@PathVariable Long feedIdx, @RequestParam("comment")String comment){
+        return feedDetailService.setFeedComment(feedIdx, "manijang2", comment);
+    }
+
+    @DeleteMapping("/api/feed/comment/{commentIdx}")
+    public CommonMsgResponseDto deleteFeedComment(@PathVariable Long commentIdx){
+        return feedDetailService.deleteFeedComment(commentIdx);
     }
 }
