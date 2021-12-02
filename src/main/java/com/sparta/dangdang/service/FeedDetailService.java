@@ -77,6 +77,9 @@ public class FeedDetailService {
             feedLikeUserRepository.delete(feedLikeUser);
         }
 
+        feed.setLike(requestLike);
+        feedRepository.save(feed);
+
         return new FeedLikeResponseDto(feedIdx, requestLike);
     }
 

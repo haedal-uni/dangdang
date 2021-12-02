@@ -25,5 +25,7 @@ public class FeedLikeUser {
 
         feed.getLikeUsers().add(this);
         user.getLikeFeeds().add(this);
+
+        feed.setLike(true);
     }
 }

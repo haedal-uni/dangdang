@@ -58,4 +58,12 @@ public class Feed {
             writer.getWrittenFeeds().add(this);
         }
     }
+
+    public void setLike(Boolean isLike) {
+        if(isLike) {
+            likeCount += 1;
+        } else {
+            likeCount -= 1;
+        }
+    }
 }
