@@ -38,4 +38,4 @@ out/
 
 
 ### aws.yml
-./main/resources/aws.yml
+resources/**/*.yml
