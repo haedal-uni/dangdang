@@ -1,4 +1,4 @@
-package com.sparta.dangdang.config;
+package shop.dangdang.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

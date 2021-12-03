@@ -1,10 +1,11 @@
-package com.sparta.dangdang.domain;
+package shop.dangdang.domain;
 
-import com.sparta.dangdang.dto.UploadDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import shop.dangdang.dto.UploadDto;
 
 import javax.persistence.*;
 

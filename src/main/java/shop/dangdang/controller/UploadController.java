@@ -1,9 +1,9 @@
-package com.sparta.dangdang.controller;
+package shop.dangdang.controller;
 
-import com.sparta.dangdang.domain.Upload;
-import com.sparta.dangdang.dto.UploadDto;
-import com.sparta.dangdang.service.S3Uploader;
-import com.sparta.dangdang.service.UploadService;
+import shop.dangdang.domain.Upload;
+import shop.dangdang.dto.UploadDto;
+import shop.dangdang.service.S3Uploader;
+import shop.dangdang.service.UploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

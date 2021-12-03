@@ -1,10 +1,11 @@
-package com.sparta.dangdang.service;
+package shop.dangdang.service;
 
-import com.sparta.dangdang.domain.Upload;
-import com.sparta.dangdang.dto.UploadDto;
-import com.sparta.dangdang.repository.UploadRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import shop.dangdang.domain.Upload;
+import shop.dangdang.dto.UploadDto;
+import shop.dangdang.repository.UploadRepository;
 
 import javax.transaction.Transactional;
 

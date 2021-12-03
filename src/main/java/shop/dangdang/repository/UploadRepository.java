@@ -1,7 +1,8 @@
-package com.sparta.dangdang.repository;
+package shop.dangdang.repository;
 
-import com.sparta.dangdang.domain.Upload;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import shop.dangdang.domain.Upload;
 
 public interface UploadRepository extends JpaRepository<Upload, Long> {
 }
