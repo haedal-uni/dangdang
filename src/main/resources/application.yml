@@ -1,6 +1,0 @@
-cloud:
-  aws:
-    s3:
-      bucket: dangdang-bucket
-    region:
-      static: ap-northeast-2
