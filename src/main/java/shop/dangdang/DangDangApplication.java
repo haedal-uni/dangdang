@@ -9,12 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 public class DangDangApplication {
 
-//    public static void main(String[] args) {
-//        SpringApplication.run(DangDangApplication.class, args);
-//    }
-//
-//}
-
     public static final String APPLICATION_LOCATIONS = "spring.config.location="
             + "classpath:application.yml,"
             + "classpath:aws.yml";

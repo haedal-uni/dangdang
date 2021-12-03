@@ -15,6 +15,7 @@ import java.io.IOException;
 @RestController
 public class UploadController {
     private final UploadService uploadService;
+    private final S3Uploader s3Uploader;
 
     @PostMapping("/api/upload")
     public Upload setUpload(UploadDto uploadDto){
@@ -23,8 +24,8 @@ public class UploadController {
 
 
 
-    private final S3Uploader s3Uploader;
-    @PostMapping("/images")
+
+    @PostMapping("/api/upload")
     public String upload(@RequestParam("images") MultipartFile multipartFile) throws IOException {
         s3Uploader.upload(multipartFile, "static");
         return "test";
