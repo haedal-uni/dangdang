@@ -24,12 +24,12 @@ public class UploadController {
 
 
 
-
-    @PostMapping("/api/upload")
-    public String upload(@RequestParam("images") MultipartFile multipartFile) throws IOException {
-        s3Uploader.upload(multipartFile, "static");
-        return "test";
-    }
+//
+//    @PostMapping("/api/upload")
+//    public String upload(@RequestParam("images") MultipartFile multipartFile) throws IOException {
+//        s3Uploader.upload(multipartFile, "static");
+//        return "test";
+//    }
 
 }
 
