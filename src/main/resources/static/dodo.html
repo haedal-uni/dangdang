@@ -112,7 +112,7 @@
     function saveArticle() {
         let form_data = new FormData()
         form_data.append("content", $("#writerArticle").val())
-        form_data.append("file", $("#product_image")[0].files[0])
+        form_data.append("image", $("#product_image")[0].files[0])
 
         $.ajax({
             type: "POST",
@@ -123,6 +123,13 @@
             success: function (response) {
                 alert("글 저장 성공!!");
             }
+
+
+        // }).done(function (data) {
+        //     $("#image_container")[0].attr("src", data);
+        // }).fail(function (error) {
+        //     alert(error);
+
         });
     }
 

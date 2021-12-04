@@ -8,6 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Getter
 public class UploadDto {
     private String content;
-    private MultipartFile file;
+    private MultipartFile image;
     //private String file;
 }
