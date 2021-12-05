@@ -33,9 +33,11 @@ public class Upload extends Timestamped {
 //    }
 
 
-    public Upload(UploadDto uploadDto) {
+    public Upload(UploadDto uploadDto, String image) {
         this.content = uploadDto.getContent();
-        this.image = uploadDto.getImage().getOriginalFilename();
-        //this.file = uploadDto.getFile().getOriginalFilename();
+        this.image = image;
+
     }
+
 }
+
