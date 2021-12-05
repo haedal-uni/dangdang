@@ -21,8 +21,51 @@
             crossorigin="anonymous"></script>
 
     <title>DangDang</title>
-    
+    <script>
+        function test() {
+            let test = sessionStorage.getItem("image_idx");
+            $.ajax({
+                type: "GET",
+                url: `/test?idx=${test}`,
+                data: {},
+                success: function (response) {
+                    let tt = response['image'];
+                    let temp_html = `<img src="${tt}">`;
+                    $('#abc').append(temp_html);
+                }
+            });
+        }
+
+        function test2() {
+            $.ajax({
+                type: "GET",
+                url: `/test2`,
+                data: {},
+                success: function (response) {
+                    for (let i = 0; i < response.length; i++) {
+                        let idx = response[i]['idx'];
+                        let content = response[i]['content'];
+                        let image = response[i]['image'];
+                        let date = response[i]['createdAt'];
+                        let temp_html = `<img src="${image}" width="300" height="200">
+                                        <h3>${idx}</h3>
+                                        <h3>${content}</h3>
+                                        <h3>${date}</h3>
+                                        <hr>`;
+                        $('#abc').append(temp_html);
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            // test();
+            test2();
+        });
+
+    </script>
 </head>
 <body>
+<div id="abc"></div>
 </body>
 </html>

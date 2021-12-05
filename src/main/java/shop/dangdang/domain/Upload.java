@@ -23,15 +23,7 @@ public class Upload extends Timestamped {
     private String content;
 
     @Column(nullable = false)
-    //private String imageUrl;
     private String image;
-
-
-//    public Upload(UploadDto uploadDto, String imageUrl){
-//        this.content = uploadDto.getContent();
-//        this.imageUrl = imageUrl;
-//    }
-
 
     public Upload(UploadDto uploadDto, String image) {
         this.content = uploadDto.getContent();

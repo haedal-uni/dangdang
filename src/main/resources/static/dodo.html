@@ -114,8 +114,6 @@
         form_data.append("content", $("#writerArticle").val())
         form_data.append("image", $("#product_image")[0].files[0])
 
-
-
         $.ajax({
             type: "POST",
             url: "/api/upload",
@@ -124,14 +122,9 @@
             processData: false,
             success: function (response) {
                 alert("글 저장 성공!!");
+                // sessionStorage.setItem("image_idx", response['idx']);
+                location.href = "/"; // 페이지 변환
             }
-
-
-        // }).done(function (data) {
-        //     $("#image_container")[0].attr("src", data);
-        // }).fail(function (error) {
-        //     alert(error);
-
         });
     }
 
@@ -151,17 +144,11 @@
             img.setAttribute("class", "col-lg-6");
             document.querySelector("div#image_container").appendChild(img);
         };
-
         reader.readAsDataURL(event.target.files[0]);
     }
-
-
-
 </script>
 
 <section id="container">
-
-
     <header id="header">
         <section class="h_inner">
 
@@ -332,7 +319,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
 
-<!-- ajax 오류 해결 방법 선만님 코드 slim 제거 -->
+<!-- ajax 오류 해결 방법으로 인해 slim 제거 -->
 <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script> -->
