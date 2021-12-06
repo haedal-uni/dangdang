@@ -10,8 +10,8 @@ public class FrontController {
         return "index";
     }
 
-    @GetMapping("/dodo")
+    @GetMapping("/upload")
     public String getPageDodo(){
-        return "dodo";
+        return "upload";
     }
 }

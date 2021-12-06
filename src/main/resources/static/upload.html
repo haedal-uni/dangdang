@@ -109,6 +109,31 @@
 
 
 
+    function checkUpload() {
+        if ( ($("#product_image")[0].files[0] == undefined) || ($("#writerArticle").val().length == 0) ) {
+            alert("사진 혹은 글 작성은 필수입니다 😭")
+        } else {
+            // 주소 입력 확인
+            if ( ($("#product_image")[0].files[0] != undefined) && ($("#writerArticle").val().length != 0) && ($("#addressSearch").val().length ==0) ) {
+                let addressConfirm = confirm("주소 입력 정말 안하실 건가요??🥺");
+                if (addressConfirm) {
+                    saveArticle()
+                }
+                else {
+                    alert('주소 입력을 위해 업로드 작성 화면으로 돌아갑니다.');
+                }
+            }
+
+            if ( ($("#writerArticle").val().length != 0) && ($("#addressSearch").val().length !=0) && ($("#product_image")[0].files[0] == undefined) ) {
+                alert("사진 업로드가 필요해요! 😆")
+            }
+            if ( ($("#addressSearch").val().length !=0) && ($("#product_image")[0].files[0] != undefined) && $("#writerArticle").val().length == 0) {
+                alert("글 작성이 필요해요! 🐕")
+            }
+            if (($("#writerArticle").val().length != 0) && ($("#addressSearch").val().length !=0) && ($("#product_image")[0].files[0] != undefined)) { saveArticle() }
+        }
+    }
+
     function saveArticle() {
         let form_data = new FormData()
         form_data.append("address", $("#addressSearch").val())
@@ -122,14 +147,12 @@
             contentType: false,
             processData: false,
             success: function (response) {
-                alert("글 저장 성공!!");
+                alert("성공적으로 업로드 되었습니다.");
                 // sessionStorage.setItem("image_idx", response['idx']);
                 location.href = "/"; // 페이지 변환
             }
         });
     }
-
-
 
 
 
@@ -261,7 +284,7 @@
                             <header class="top">
                                 <!--    <div class="wrap"> -->
                                 <div class="search">
-                                    <input id=addressSearch" onkeydown="counter()" type="text" class="searchTerm" placeholder="위치 등록">
+                                    <input id="addressSearch" onkeydown="counter()" type="text" class="searchTerm" placeholder="위치 등록">
                                     <button type="submit" class="searchButton" onclick="clickclick()">
                                         <i class="fa fa-search"></i>
                                     </button>
@@ -280,7 +303,7 @@
 
 
                             <div class="add_button">
-                                <div class="button1" onclick="saveArticle()">등록하기</div>
+                                <div class="button1" onclick="checkUpload()">등록하기</div>
                             </div>
 
                         </div>

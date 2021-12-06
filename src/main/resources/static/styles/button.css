@@ -55,21 +55,6 @@
 }
 
 
-/* ================================================================*/
-/*강아지 종 선택 버튼 */
-/*body {*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*  background-color: #004882;*/
-/*}*/
-
-/*.box {*/
-/*  position: absolute;*/
-/*  top: 50%;*/
-/*  left: 50%;*/
-/*  transform: translate(-50%, -50%);*/
-/*}*/
-
 .box select {
   background-color: #f5bfab;
   color: white;
