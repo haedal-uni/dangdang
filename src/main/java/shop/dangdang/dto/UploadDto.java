@@ -9,5 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class UploadDto {
     private String address;
     private String content;
+    private String puppy;
     private MultipartFile image;
 }

@@ -123,7 +123,6 @@
                     alert('주소 입력을 위해 업로드 작성 화면으로 돌아갑니다.');
                 }
             }
-
             if ( ($("#writerArticle").val().length != 0) && ($("#addressSearch").val().length !=0) && ($("#product_image")[0].files[0] == undefined) ) {
                 alert("사진 업로드가 필요해요! 😆")
             }
@@ -138,6 +137,7 @@
         let form_data = new FormData()
         form_data.append("address", $("#addressSearch").val())
         form_data.append("content", $("#writerArticle").val())
+        form_data.append("puppy", $("#checkBox option:selected").val())
         form_data.append("image", $("#product_image")[0].files[0])
 
         $.ajax({
@@ -269,7 +269,7 @@
 
                     <div class="content_section">
                         <div class="box">
-                            <select>
+                            <select id="checkBox">
                                 <option>미니핀 (1살)</option>
                                 <option>미니핀 (5살)</option>
                                 <option>미니핀 (7살)</option>

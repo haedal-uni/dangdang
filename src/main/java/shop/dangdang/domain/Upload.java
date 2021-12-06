@@ -26,11 +26,15 @@ public class Upload extends Timestamped {
     private String content;
 
     @Column(nullable = false)
+    private String puppy;
+
+    @Column(nullable = false)
     private String image;
 
     public Upload(UploadDto uploadDto, String image) {
         this.address = uploadDto.getAddress();
         this.content = uploadDto.getContent();
+        this.puppy = uploadDto.getPuppy();
         this.image = image;
     }
 }
