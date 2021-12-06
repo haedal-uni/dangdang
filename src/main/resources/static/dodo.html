@@ -111,6 +111,7 @@
 
     function saveArticle() {
         let form_data = new FormData()
+        form_data.append("address", $("#addressSearch").val())
         form_data.append("content", $("#writerArticle").val())
         form_data.append("image", $("#product_image")[0].files[0])
 
@@ -260,7 +261,7 @@
                             <header class="top">
                                 <!--    <div class="wrap"> -->
                                 <div class="search">
-                                    <input onkeydown="counter()" type="text" class="searchTerm" placeholder="위치 등록">
+                                    <input id=addressSearch" onkeydown="counter()" type="text" class="searchTerm" placeholder="위치 등록">
                                     <button type="submit" class="searchButton" onclick="clickclick()">
                                         <i class="fa fa-search"></i>
                                     </button>

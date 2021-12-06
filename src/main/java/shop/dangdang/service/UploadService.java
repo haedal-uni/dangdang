@@ -2,8 +2,10 @@ package shop.dangdang.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import shop.dangdang.domain.Membership;
 import shop.dangdang.domain.Upload;
 import shop.dangdang.dto.UploadDto;
+import shop.dangdang.repository.MembershipRepository;
 import shop.dangdang.repository.UploadRepository;
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -37,4 +39,5 @@ public class UploadService {
         List<Upload> allTest = uploadRepository.findAll();
         return allTest;
     }
+
 }

@@ -20,16 +20,18 @@ public class Upload extends Timestamped {
     private Long idx;
 
     @Column(nullable = false)
+    private String address;
+
+    @Column(nullable = false)
     private String content;
 
     @Column(nullable = false)
     private String image;
 
     public Upload(UploadDto uploadDto, String image) {
+        this.address = uploadDto.getAddress();
         this.content = uploadDto.getContent();
         this.image = image;
-
     }
-
 }
 
