@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.dangdang.dto.UploadDto;
+import shop.dangdang.dto.RegistryDto;
 
 import javax.persistence.*;
 
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-public class Upload extends Timestamped {
+public class Registry extends Timestamped {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long idx;
@@ -31,7 +31,7 @@ public class Upload extends Timestamped {
     @Column(nullable = false)
     private String image;
 
-    public Upload(UploadDto uploadDto, String image) {
+    public Registry(RegistryDto uploadDto, String image) {
         this.address = uploadDto.getAddress();
         this.content = uploadDto.getContent();
         this.puppy = uploadDto.getPuppy();

@@ -10,8 +10,8 @@ public class FrontController {
         return "index";
     }
 
-    @GetMapping("/upload")
-    public String getPageDodo(){
-        return "upload";
+    @GetMapping("/registry")
+    public String getPageRegistry(){
+        return "registry";
     }
 }

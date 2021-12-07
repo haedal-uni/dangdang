@@ -94,7 +94,6 @@
         bsCustomFileInput.init()  // 파일 업로드 코드
     })
 
-
     let num=0;
     function counter() {
        num+=1
@@ -106,8 +105,6 @@
     function clickclick() {
         $("#writer").show();
     }
-
-
 
     function checkUpload() {
         if ( ($("#product_image")[0].files[0] == undefined) || ($("#writerArticle").val().length == 0) ) {
@@ -135,14 +132,17 @@
 
     function saveArticle() {
         let form_data = new FormData()
-        form_data.append("address", $("#addressSearch").val())
+        if ($("#addressSearch").val().length == 0 ) {
+            form_data.append("address", "천국인가요?")
+        } else {form_data.append("address", $("#addressSearch").val())}
+
         form_data.append("content", $("#writerArticle").val())
         form_data.append("puppy", $("#checkBox option:selected").val())
         form_data.append("image", $("#product_image")[0].files[0])
 
         $.ajax({
             type: "POST",
-            url: "/api/upload",
+            url: "/registry",
             data: form_data,
             contentType: false,
             processData: false,
