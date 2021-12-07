@@ -20,4 +20,5 @@ public class Membership {
 
     @Column(nullable = false)
     private String puppy;
+
 }

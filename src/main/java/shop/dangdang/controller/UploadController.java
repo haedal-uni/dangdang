@@ -29,10 +29,16 @@ public class UploadController {
         return uploadService.doTest(idx);
     }
 
-    // 테스트2(리스트 전체 가져오기)
-    @GetMapping("/test2")
-    public List<Upload> doTest2() {
-        return uploadService.doTest2();
+    // 사진 정보 main 페이지로 가져오기(전체)
+    @GetMapping("/maininfo")
+    public List<Upload> getmaininfo() {
+        return uploadService.getmaininfo();
+    }
+
+    // 사진들 photo 페이지로 가져오기(전체) 주소 비교
+    @GetMapping("/photos/{addressId}")
+    public List<Upload> getphotos(@PathVariable("addressId") Long addressId) {
+        return uploadService.getphotos(addressId);
     }
 
     //회원가입할 때 정보 가져오기

@@ -14,4 +14,5 @@ public class UploadDto {
     private String address;
     private String content;         // 게시 글
     private MultipartFile image;    // 이미지 파일
+    private Long addressId;
 }

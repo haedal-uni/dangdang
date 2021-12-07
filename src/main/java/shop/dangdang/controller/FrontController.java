@@ -25,7 +25,7 @@ public class FrontController {
 
     @GetMapping("/photo")
     public String getphoto(){
-        return "photo";
+        return "photopage";
     }
 
     @GetMapping("/upload")

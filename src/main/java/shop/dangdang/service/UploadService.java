@@ -35,9 +35,15 @@ public class UploadService {
     }
 
 
-    // 테스트2
-    public List<Upload> doTest2() {
-        List<Upload> allTest = uploadRepository.findAll();
-        return allTest;
+    // 사진 정보 main page로 가져오기
+    public List<Upload> getmaininfo() {
+        List<Upload> allinfo = uploadRepository.findAll();
+        return allinfo;
+    }
+
+    // 사진 정보 photo page로 가져오기
+    public List<Upload> getphotos(Long addressId) {
+        List<Upload> allPhoto = uploadRepository.findByaddressId(addressId);
+        return allPhoto;
     }
 }

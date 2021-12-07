@@ -27,6 +27,4 @@ public class FeedController {
         return feed;
     }
 
-
-
 }

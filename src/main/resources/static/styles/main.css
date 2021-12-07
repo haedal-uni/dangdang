@@ -115,7 +115,7 @@
     display: inline-block;
 }
 .contents .img_section .trans_inner img{
-    width: 100%;
+    min-width: 600px;
     height: 100%;
 }
 

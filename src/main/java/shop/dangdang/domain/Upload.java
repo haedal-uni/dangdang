@@ -28,9 +28,13 @@ public class Upload extends Timestamped {
     @Column(nullable = false)
     private String image;           // 이미지 파일
 
+    @Column(nullable = false)
+    private Long addressId;             // 글 좋아요 개수
+
     public Upload(UploadDto uploadDto, String image) {
         this.address = uploadDto.getAddress();
         this.content = uploadDto.getContent();
+        this.addressId = uploadDto.getAddressId();
         this.image = image;
     }
 }
