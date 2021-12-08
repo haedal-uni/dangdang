@@ -1,7 +1,7 @@
 package shop.dangdang.repository;
 
-import shop.dangdang.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import shop.dangdang.domain.User;
 
 import java.util.Optional;
 

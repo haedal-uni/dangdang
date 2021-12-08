@@ -1,7 +1,7 @@
 package shop.dangdang.repository;
 
-import shop.dangdang.domain.Feed;
 import org.springframework.data.jpa.repository.JpaRepository;
+import shop.dangdang.domain.Feed;
 
 public interface FeedRepository extends JpaRepository<Feed, Long> {
 }

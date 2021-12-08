@@ -37,7 +37,7 @@ public class Feed {
     private Long likeCount;             // 글 좋아요 개수
 
     @OneToMany(mappedBy = "feed")
-    private final List<FeedLikeUser> likeUsers = new ArrayList<>();
+    private final List<shop.dangdang.domain.FeedLikeUser> likeUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "feed")
     @JsonBackReference
