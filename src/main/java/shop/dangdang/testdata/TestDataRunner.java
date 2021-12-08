@@ -1,28 +1,25 @@
 package shop.dangdang.testdata;
 
-import shop.dangdang.domain.Comment;
-import shop.dangdang.domain.Feed;
-import shop.dangdang.domain.FeedLikeUser;
-import shop.dangdang.domain.User;
+import org.springframework.stereotype.Component;
+import shop.dangdang.domain.*;
 import shop.dangdang.repository.CommentRepository;
 import shop.dangdang.repository.FeedLikeUserRepository;
 import shop.dangdang.repository.FeedRepository;
-import shop.dangdang.repository.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import shop.dangdang.repository.MembershipRepository;
 
-// @Component
+@Component
 public class TestDataRunner implements ApplicationRunner {
     private final FeedRepository feedRepository;
-    private final UserRepository userRepository;
+    private final MembershipRepository membershipRepository;
     private final FeedLikeUserRepository feedLikeUserRepository;
     private final CommentRepository commentRepository;
 
-    public TestDataRunner(FeedRepository feedRepository, UserRepository userRepository, FeedLikeUserRepository feedLikeUserRepository, CommentRepository commentRepository) {
+    public TestDataRunner(FeedRepository feedRepository, MembershipRepository membershipRepository, FeedLikeUserRepository feedLikeUserRepository, CommentRepository commentRepository) {
         this.feedRepository = feedRepository;
-        this.userRepository = userRepository;
+        this.membershipRepository = membershipRepository;
         this.feedLikeUserRepository = feedLikeUserRepository;
         this.commentRepository = commentRepository;
     }
@@ -30,8 +27,8 @@ public class TestDataRunner implements ApplicationRunner {
     @Override
     @Transactional
     public void run(ApplicationArguments args) throws Exception {
-        User user = new User("manijang2", "thumb.jpeg");
-        userRepository.save(user);
+        Membership user = new Membership("manijang2", "thumb.jpeg");
+        membershipRepository.save(user);
 
         String main_image_path = "img03.jpg";
         String content = "내용_01";
