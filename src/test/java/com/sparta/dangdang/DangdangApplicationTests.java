@@ -1,4 +1,4 @@
-package com.sparta.dangdang;
+package shop.dangdang;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.sparta.dangdang.domain;
+package shop.dangdang.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
