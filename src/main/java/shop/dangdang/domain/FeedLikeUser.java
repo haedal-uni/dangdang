@@ -17,9 +17,9 @@ public class FeedLikeUser {
 
     @ManyToOne
     @JoinColumn(name = "userIdx")
-    private Membership user;                  // 좋아요 누른 사용자
+    private User user;                  // 좋아요 누른 사용자
 
-    public FeedLikeUser(Feed feed, Membership user) {
+    public FeedLikeUser(Feed feed, User user) {
         this.feed = feed;
         this.user = user;
 

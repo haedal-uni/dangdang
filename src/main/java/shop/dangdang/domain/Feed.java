@@ -24,7 +24,7 @@ public class Feed {
 
     @ManyToOne
     @JoinColumn(name = "writerIdx")
-    private Membership writer;                // 글 작성자
+    private User writer;                // 글 작성자
     @CreatedDate
     private LocalDateTime createdDate;  // 글 생성일자
     @Column(nullable = true)
@@ -43,7 +43,7 @@ public class Feed {
     @JsonBackReference
     private final List<Comment> comments = new ArrayList<>();
 
-    public Feed(Membership writer, String mainImagePath, String content, String address) {
+    public Feed(User writer, String mainImagePath, String content, String address) {
         setWriter(writer);
         this.mainImagePath = mainImagePath;
         this.content = content;
@@ -51,7 +51,7 @@ public class Feed {
         this.likeCount = 0L;
     }
 
-    public void setWriter(Membership writer) {
+    public void setWriter(User writer) {
         this.writer = writer;
 
         if(!writer.getWrittenFeeds().contains(this)) {
