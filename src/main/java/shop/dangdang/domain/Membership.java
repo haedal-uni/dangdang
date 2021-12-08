@@ -1,30 +1,41 @@
 package shop.dangdang.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+@Entity
+@Table
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
-@Entity
 public class Membership {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long idx;
 
+    @Column(nullable = false, unique = true)
+    private String nickName;        // 사용자 아이디
+
+    @JsonIgnore
     @Column(nullable = false)
-    private String nickName;          // 사용자 아이디
+    private String password;        // 사용자 아이디
+
     @Column(nullable = false)
-    private String profileImgName;  // 사용자 프로필 이미지 이름
+    private String email;           // 사용자 이메일
+
+    @JsonIgnore
+    @Column(name = "activated")
+    private boolean activated;
 
     @OneToMany(mappedBy = "writer")
     @JsonBackReference
@@ -33,12 +44,10 @@ public class Membership {
     @OneToMany(mappedBy = "user")
     private final List<shop.dangdang.domain.FeedLikeUser> likeFeeds = new ArrayList<>();     // 내가 좋아요를 누른 포스트
 
-    public Membership(String nickName, String userProfileImg) {
-        this.nickName = nickName;
-        this.profileImgName = userProfileImg;
-        this.puppy = "default.png";
-    }
-
-    @Column(nullable = false)
-    private String puppy;
+    @ManyToMany
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "idx")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
+    private Set<Authority> authorities;
 }
