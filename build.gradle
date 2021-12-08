@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.sparta'
+group = 'shop'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -30,7 +30,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.0.1.RELEASE'
 }
-
+//implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.0.1.RELEASE'
 test {
     useJUnitPlatform()
 }

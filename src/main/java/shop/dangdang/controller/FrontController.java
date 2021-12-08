@@ -1,13 +1,10 @@
 package shop.dangdang.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@RequiredArgsConstructor
 public class FrontController {
-
     @GetMapping("/")
     public String getPageIndex(){
         return "index";
@@ -28,8 +25,9 @@ public class FrontController {
         return "photopage";
     }
 
-    @GetMapping("/upload")
-    public String getPageDodo(){
-        return "upload";
+    @GetMapping("/writer")
+    public String getPageRegistry(){
+        return "registry";
     }
+
 }

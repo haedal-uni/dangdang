@@ -1,31 +1,39 @@
 package shop.dangdang.domain;
 
-import shop.dangdang.dto.FeedRequestDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Feed extends Timestamped {
-
+@EntityListeners(AuditingEntityListener.class)
+public class Feed {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private Long idx;                   // ID
+    @Column(name="FeedId")
+    private Long idx;
 
     @ManyToOne
-    private User NickName;              // 사용자 아이디
+    @JoinColumn(name = "MembershipId")
+    private Membership membership;      // 글 작성자
 
-    @Column(nullable = false)
-    private String createTime;          // 글 생성일자 또는 변경일자
+    @ManyToOne
+    @JoinColumn(name = "RegistryId")
+    private Registry registry;          // 글 작성자
 
-    @Column(nullable = false)
+    @CreatedDate
+    private LocalDateTime createdDate;  // 글 생성일자
+
+    @Column(nullable = true)
     private String mainImagePath;       // 글 메인 이미지 파일명(ex-filename.png)
 
     @Column(nullable = false)
@@ -35,21 +43,37 @@ public class Feed extends Timestamped {
     private String address;             // 글 or 사진을 올린 장소
 
     @Column(nullable = false)
-    private String size;                // 강아지 크기
-
-    @Column(nullable = false)
     private Long likeCount;             // 글 좋아요 개수
 
+    @OneToMany(mappedBy = "feed")
+    private List<FeedLikeUser> likeUsers;  // 좋아요 누른 사용자들 리스트에 넣기
 
-    // Feed 생성시 이용
-    public Feed(FeedRequestDto feedDto){
-        this.createTime = feedDto.getCreateTime();
-        this.mainImagePath = feedDto.getMainImagePath();
-        this.content = feedDto.getContent();
-        this.address = feedDto.getAddress();
-        this.size = feedDto.getSize();
-        this.likeCount = feedDto.getLikeCount();
+    @OneToMany(mappedBy = "feed")
+    @JsonBackReference
+    private List<Comment> comments;
+
+
+    public Feed(Membership membership, String mainImagePath, String content, String address) {
+        setWriter(membership);
+        this.mainImagePath = mainImagePath;
+        this.content = content;
+        this.address = address;
+        this.likeCount = 0L;
     }
 
-}
+    public void setWriter(Membership membership) {
+        this.membership = membership;
 
+        if(!membership.getFeeds().contains(this)) {
+            membership.getFeeds().add(this);
+        }
+    }
+
+    public void setLike(Boolean isLike) {
+        if(isLike) {
+            likeCount += 1;
+        } else {
+            likeCount -= 1;
+        }
+    }
+}

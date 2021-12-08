@@ -36,7 +36,7 @@ public class S3Uploader { // 로컬에 이미지를 저장하고 s3에 업로드
         String fileName = dirName + "/" + UUID.randomUUID() + uploadFile.getName();   // S3에 저장된 파일 이름
         String uploadImageUrl = putS3(uploadFile, fileName); // s3로 업로드
         removeNewFile(uploadFile);
-        return uploadImageUrl;
+        return uploadImageUrl; // 파일 이름으로 반환
     }
 
     // S3로 업로드
@@ -54,7 +54,7 @@ public class S3Uploader { // 로컬에 이미지를 저장하고 s3에 업로드
         log.info("File delete fail");
     }
 
-    // 로컬에 파일 업로드 하기 (user dir :  C:\Users\cjera\Desktop\develop\backend\2차 )
+    // 로컬에 파일 업로드 하기 (user dir : 현재 프로젝트 구조 )
     private Optional<File> convert(MultipartFile file) throws IOException {
         File convertFile = new File(System.getProperty("user.dir") + "/" + file.getOriginalFilename());
         if (convertFile.createNewFile()) { // 바로 위에서 지정한 경로에 File이 생성됨 (경로가 잘못되었다면 생성 불가능)

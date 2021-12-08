@@ -5,20 +5,22 @@ $(document).ready(function () {
 function getmain() {
     $.ajax({
         type: "GET",
-        url: `/maininfo`,
+        url: `/mainpage`,
         data: {},
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
                 let idx = response[i]['idx'];
                 let content = response[i]['content'];
                 let image = response[i]['image'];
-                let date = response[i]['createdAt'];
-                makeListPost(idx, content, image);
+                let nickname = response[i]['nickname'];
+                let userImg = response[i]['profileImgUrl'] ;
+                makeListPost(idx, content, image, nickname, userImg);
             }
         }
     });
 }
-function makeListPost(idx, content, image) {
+
+function makeListPost(idx, content, image, nickname, userImg) {
     let tempHtml = `<article class="contents cont">
                     <div class="img_section">
                         <div class="trans_inner">
@@ -31,10 +33,10 @@ function makeListPost(idx, content, image) {
                         <header class="top">
                             <div class="user_container">
                                 <div class="profile_img">
-                                    <img src=images/thumb02.jpg alt="">
+                                    <img src="${userImg}" alt="">
                                 </div>
                                 <div class="user_name">
-                                    <div class="nick_name" id="NickName${idx}">Nickname</div>
+                                    <div class="nick_name" id="NickName${idx}">${nickname}</div>
                                     <div class="address">address</div>
                                 </div>
                             </div>

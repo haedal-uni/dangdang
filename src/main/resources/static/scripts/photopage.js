@@ -5,7 +5,7 @@ $(document).ready(function () {
 function getphoto(){
     $.ajax({
         type: "GET",
-        url: `/photo/${address}`,
+        url: `/photos`,
         data: {},
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
