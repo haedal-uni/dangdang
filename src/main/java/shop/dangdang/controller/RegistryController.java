@@ -34,7 +34,7 @@ public class RegistryController {
     }
 
     //회원가입할 때 정보 가져오기
-    @GetMapping("/registry")
+    @GetMapping("/registryㅁㅁㅁ")
     public List<Membership> puppy() {
         return registryService.puppy();
     }
