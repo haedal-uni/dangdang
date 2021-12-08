@@ -17,11 +17,7 @@ import javax.persistence.*;
 public class Registry extends Timestamped {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @Column(name = "RegistryId")
     private Long idx;
-
-    @Column(nullable = true)
-    private String nickname;
 
     @Column(nullable = false)
     private String address;
