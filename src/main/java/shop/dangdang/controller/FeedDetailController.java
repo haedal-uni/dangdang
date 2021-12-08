@@ -1,7 +1,7 @@
-package com.sparta.dangdang.controller;
+package shop.dangdang.controller;
 
-import com.sparta.dangdang.dto.*;
-import com.sparta.dangdang.service.FeedDetailService;
+import shop.dangdang.dto.*;
+import shop.dangdang.service.FeedDetailService;
 import org.springframework.web.bind.annotation.*;
 
 

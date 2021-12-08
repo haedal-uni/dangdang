@@ -1,4 +1,4 @@
-package com.sparta.dangdang.dto;
+package shop.dangdang.dto;
 
 import lombok.*;
 
