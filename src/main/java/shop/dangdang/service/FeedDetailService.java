@@ -1,29 +1,23 @@
 package shop.dangdang.service;
 
-import shop.dangdang.domain.Comment;
-import shop.dangdang.domain.Feed;
-import shop.dangdang.domain.FeedLikeUser;
-import shop.dangdang.domain.User;
+import shop.dangdang.domain.*;
 import shop.dangdang.dto.CommentResponseDto;
 import shop.dangdang.dto.CommonMsgResponseDto;
 import shop.dangdang.dto.FeedDetailResponseDto;
 import shop.dangdang.dto.FeedLikeResponseDto;
-import shop.dangdang.repository.CommentRepository;
-import shop.dangdang.repository.FeedLikeUserRepository;
-import shop.dangdang.repository.FeedRepository;
-import shop.dangdang.repository.UserRepository;
+import shop.dangdang.repository.*;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FeedDetailService {
     private final FeedRepository feedRepository;
-    private final UserRepository userRepository;
+    private final MembershipRepository membershipRepository;
     private final FeedLikeUserRepository feedLikeUserRepository;
     private final CommentRepository commentRepository;
 
-    public FeedDetailService(FeedRepository feedRepository, UserRepository userRepository, FeedLikeUserRepository feedLikeUserRepository, CommentRepository commentRepository) {
+    public FeedDetailService(FeedRepository feedRepository, MembershipRepository membershipRepository, FeedLikeUserRepository feedLikeUserRepository, CommentRepository commentRepository) {
         this.feedRepository = feedRepository;
-        this.userRepository = userRepository;
+        this.membershipRepository = membershipRepository;
         this.feedLikeUserRepository = feedLikeUserRepository;
         this.commentRepository = commentRepository;
     }
@@ -60,7 +54,7 @@ public class FeedDetailService {
                 () -> new NullPointerException("해당 게시글이 없습니다.")
         );
 
-        User loginUser = userRepository.findByNickName(userNickName).orElseThrow(
+        Membership loginUser = membershipRepository.findByNickName(userNickName).orElseThrow(
                 () -> new NullPointerException("해당 사용자가 없습니다.")
         );
 
@@ -90,7 +84,7 @@ public class FeedDetailService {
     }
 
     public CommonMsgResponseDto setFeedComment(Long feedIdx, String userNickName, String commentConent) {
-        User loginUser = userRepository.findByNickName(userNickName).orElseThrow(
+        Membership loginUser = membershipRepository.findByNickName(userNickName).orElseThrow(
                 () -> new NullPointerException("해당 사용자가 없습니다.")
         );
 
