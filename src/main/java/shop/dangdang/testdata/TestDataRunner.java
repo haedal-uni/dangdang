@@ -1,13 +1,13 @@
-package com.sparta.dangdang.testdata;
+package shop.dangdang.testdata;
 
-import com.sparta.dangdang.domain.Comment;
-import com.sparta.dangdang.domain.Feed;
-import com.sparta.dangdang.domain.FeedLikeUser;
-import com.sparta.dangdang.domain.User;
-import com.sparta.dangdang.repository.CommentRepository;
-import com.sparta.dangdang.repository.FeedLikeUserRepository;
-import com.sparta.dangdang.repository.FeedRepository;
-import com.sparta.dangdang.repository.UserRepository;
+import shop.dangdang.domain.Comment;
+import shop.dangdang.domain.Feed;
+import shop.dangdang.domain.FeedLikeUser;
+import shop.dangdang.domain.User;
+import shop.dangdang.repository.CommentRepository;
+import shop.dangdang.repository.FeedLikeUserRepository;
+import shop.dangdang.repository.FeedRepository;
+import shop.dangdang.repository.UserRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;

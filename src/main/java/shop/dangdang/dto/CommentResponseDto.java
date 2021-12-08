@@ -1,9 +1,9 @@
-package com.sparta.dangdang.dto;
+package shop.dangdang.dto;
 
-import com.sparta.dangdang.domain.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import shop.dangdang.domain.Comment;
 
 import java.util.List;
 

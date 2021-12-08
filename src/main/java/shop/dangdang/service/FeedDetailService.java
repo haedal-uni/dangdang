@@ -1,17 +1,17 @@
-package com.sparta.dangdang.service;
+package shop.dangdang.service;
 
-import com.sparta.dangdang.domain.Comment;
-import com.sparta.dangdang.domain.Feed;
-import com.sparta.dangdang.domain.FeedLikeUser;
-import com.sparta.dangdang.domain.User;
-import com.sparta.dangdang.dto.CommentResponseDto;
-import com.sparta.dangdang.dto.CommonMsgResponseDto;
-import com.sparta.dangdang.dto.FeedDetailResponseDto;
-import com.sparta.dangdang.dto.FeedLikeResponseDto;
-import com.sparta.dangdang.repository.CommentRepository;
-import com.sparta.dangdang.repository.FeedLikeUserRepository;
-import com.sparta.dangdang.repository.FeedRepository;
-import com.sparta.dangdang.repository.UserRepository;
+import shop.dangdang.domain.Comment;
+import shop.dangdang.domain.Feed;
+import shop.dangdang.domain.FeedLikeUser;
+import shop.dangdang.domain.User;
+import shop.dangdang.dto.CommentResponseDto;
+import shop.dangdang.dto.CommonMsgResponseDto;
+import shop.dangdang.dto.FeedDetailResponseDto;
+import shop.dangdang.dto.FeedLikeResponseDto;
+import shop.dangdang.repository.CommentRepository;
+import shop.dangdang.repository.FeedLikeUserRepository;
+import shop.dangdang.repository.FeedRepository;
+import shop.dangdang.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
