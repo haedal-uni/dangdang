@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shop.dangdang.domain.Authority;
 import shop.dangdang.domain.Membership;
-import shop.dangdang.dto.UserJoinDto;
+import shop.dangdang.dto.JoinDto;
 import shop.dangdang.repository.MembershipRepository;
 import shop.dangdang.util.SecurityUtil;
 
@@ -23,7 +23,7 @@ public class JwtService {
     }
 
     @Transactional
-    public Membership signup(UserJoinDto.Request requestDto) {
+    public Membership join(JoinDto.Request requestDto) {
         if (membershipRepository.findOneWithAuthoritiesBynickName(requestDto.getNickName()).orElse(null) != null) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다.");
         }

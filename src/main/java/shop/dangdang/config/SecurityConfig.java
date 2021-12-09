@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers(
-                        "/**"
+                        "/h2-console/**"
                 );
 
         // "/h2-console/**"
@@ -69,7 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/api/hello").permitAll()
 //                .antMatchers("/api/authenticate").permitAll()
 //                .antMatchers("/api/signup").permitAll()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/api/membership").permitAll()
+                .antMatchers("/api/login").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

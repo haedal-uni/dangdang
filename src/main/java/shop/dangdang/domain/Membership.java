@@ -50,4 +50,12 @@ public class Membership {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "idx")},
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
     private Set<Authority> authorities;
+
+    public Membership(String nickName, String password, String email, boolean activated, Set<Authority> authorities) {
+        this.nickName = nickName;
+        this.password = password;
+        this.email = email;
+        this.activated = activated;
+        this.authorities = authorities;
+    }
 }

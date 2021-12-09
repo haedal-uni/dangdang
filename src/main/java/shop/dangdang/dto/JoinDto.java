@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-public class UserJoinDto {
+public class JoinDto {
     @Getter
     @Setter
     public static class Request {
