@@ -18,6 +18,17 @@ public class FeedDetailController {
     // 상세보기클릭시 게시글 정보를 가져옵니다.
     @GetMapping("/api/feed/{feedIdx}")
     public FeedDetailResponseDto getFeedDetail(@PathVariable Long feedIdx){
+        System.out.println();
+        SecurityUtil.getCurrentUsername().ifPresent(nickName -> {
+            System.out.println(nickName);
+        });
+
+        if(SecurityUtil.getCurrentUsername().isPresent()) {
+            System.out.println("값이 있음 :: " + SecurityUtil.getCurrentUsername().get());
+        } else {
+            System.out.println("값이 없음");
+        }
+
         return feedDetailService.getFeedDetail(feedIdx, "manijang2");
     }
 
