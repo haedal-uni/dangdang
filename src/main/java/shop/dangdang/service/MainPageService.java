@@ -8,8 +8,6 @@ import shop.dangdang.dto.MainPageDto;
 import shop.dangdang.repository.MembershipRepository;
 import shop.dangdang.repository.RegistryRepository;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @Service
 public class MainPageService {
@@ -26,7 +24,7 @@ public class MainPageService {
                 () -> new NullPointerException("해당 게시글이 없습니다.")
         );
 
-        MainPageDto mainPageDto = new MainPageDto(registries.getImage(), registries.getContent(), memberships.getNickName(), memberships.getProfileImgUrl());
+        MainPageDto mainPageDto = new MainPageDto(registries.getImage(), registries.getContent(), memberships.getNickName());
 
         return mainPageDto;
     }

@@ -2,12 +2,8 @@ package shop.dangdang.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import shop.dangdang.domain.Membership;
-import shop.dangdang.domain.Registry;
 import shop.dangdang.dto.MainPageDto;
 import shop.dangdang.service.MainPageService;
-
-import java.util.List;
 
 @RestController
 public class MainPageController {

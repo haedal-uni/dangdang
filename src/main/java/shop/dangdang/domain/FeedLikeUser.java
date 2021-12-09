@@ -1,29 +1,19 @@
 package shop.dangdang.domain;
 
-import lombok.Getter;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class FeedLikeUser {
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @Column(name="FeedLikeUserId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
     @ManyToOne
-    @JoinColumn(name = "MembershipId")
-    private Membership membership;           // 글 작성자
-
-    @ManyToOne
-    @JoinColumn(name = "FeedId")
-    private Feed feed;                       // 좋아요한 포스트
+    @JoinColumn(name = "feedIdx")
+    private Feed feed;                  // 좋아요한 포스트
 
     @ManyToOne
     @JoinColumn(name = "userIdx")

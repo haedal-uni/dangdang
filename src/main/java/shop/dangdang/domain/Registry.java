@@ -1,5 +1,6 @@
 package shop.dangdang.domain;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,16 +17,11 @@ import javax.persistence.*;
 public class Registry extends Timestamped {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @Column(name="RegistryId")
+    @Column(name = "RegistryId")
     private Long idx;
 
-    @ManyToOne
-    @JoinColumn(name = "MembershipId")
-    private Membership membership;      // 글 작성자
-
-    @ManyToOne
-    @JoinColumn(name = "FeedId")
-    private Feed feed;                  // 글 작성자
+    @Column(nullable = true)
+    private String nickname;
 
     @Column(nullable = false)
     private String address;
@@ -39,15 +35,11 @@ public class Registry extends Timestamped {
     @Column(nullable = false)
     private String image;
 
-    @Column(nullable = false)
-    private String nickName;
-
-    public Registry(RegistryDto uploadDto, String image, String nickName) {
+    public Registry(RegistryDto uploadDto, String image) {
         this.address = uploadDto.getAddress();
         this.content = uploadDto.getContent();
         this.puppy = uploadDto.getPuppy();
         this.image = image;
-        this.nickName = membership.getNickName();
     }
 }
 

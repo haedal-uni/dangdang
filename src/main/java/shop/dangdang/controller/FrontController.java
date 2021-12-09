@@ -10,24 +10,8 @@ public class FrontController {
         return "index";
     }
 
-    @GetMapping("/detail")
-    public String getdetail(){
-        return "detail";
-    }
-
-    @GetMapping("/main")
-    public String getPagemain(){
-        return "mainpage";
-    }
-
-    @GetMapping("/photo")
-    public String getphoto(){
-        return "photopage";
-    }
-
     @GetMapping("/writer")
     public String getPageRegistry(){
         return "registry";
     }
-
 }

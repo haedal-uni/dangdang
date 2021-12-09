@@ -2,59 +2,60 @@ package shop.dangdang.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+@Entity
+@Table
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
-@Entity
 public class Membership {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name="MembershipId")
     private Long idx;
 
-    @Column(nullable = true)
-    private String profileImgUrl;   // 사용자 프로필 이미지 Url
-
-    @Column(nullable = true)
+    @Column(nullable = false, unique = true)
     private String nickName;        // 사용자 아이디
 
-    @JsonIgnore                     // 조회했을 때 json에 뜨지 않는다
+    @JsonIgnore
     @Column(nullable = false)
-    private String password;        // 사용자 비밀번호
+    private String password;        // 사용자 아이디
 
-    @JsonIgnore                     // 조회했을 때 json에 뜨지 않는다
     @Column(nullable = false)
     private String email;           // 사용자 이메일
 
-    @Column(nullable = false)
-    private String puppy;           // 강아지 종류
+    @JsonIgnore
+    @Column(name = "activated")
+    private boolean activated;
 
-    @OneToMany(mappedBy = "membership")
+    @OneToMany(mappedBy = "writer")
     @JsonBackReference
-    private List<Comment> comments;   // 댓글 리스트로 정리
+    private final List<Feed> writtenFeeds = new ArrayList<>();          // 내가 작성한 포스트
 
-    @OneToMany(mappedBy = "membership")
-    @JsonBackReference
-    private List<Feed> feeds;          // 내가 작성한 포스트들
+    @OneToMany(mappedBy = "user")
+    private final List<shop.dangdang.domain.FeedLikeUser> likeFeeds = new ArrayList<>();     // 내가 좋아요를 누른 포스트
 
-    @OneToMany(mappedBy = "membership")
-    private List<FeedLikeUser> LikeFeeds;    // 내가 좋아요 누른 포스트들
+    @ManyToMany
+    @JoinTable(
+            name = "user_authority",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "idx")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
+    private Set<Authority> authorities;
 
-    public Membership(String profileImgUrl, String nickName, String password, String email, String puppy) {
-        this.profileImgUrl = profileImgUrl;
+    public Membership(String nickName, String password, String email, boolean activated, Set<Authority> authorities) {
         this.nickName = nickName;
         this.password = password;
         this.email = email;
-        this.puppy = "default.png";
+        this.activated = activated;
+        this.authorities = authorities;
     }
 }

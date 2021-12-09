@@ -6,6 +6,7 @@ import shop.dangdang.domain.Membership;
 import java.util.Optional;
 
 public interface MembershipRepository extends JpaRepository<Membership, Long> {
-    Optional<Membership> findByNickName(String userNickName);
+    Optional<Membership> findByNickName(String nickname);
+    Optional<Membership> findOneWithAuthoritiesBynickName(String username);
 }
 
