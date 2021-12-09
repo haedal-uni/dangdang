@@ -32,13 +32,13 @@ public class JwtController {
     }
 
     // 가입
-    @PutMapping("/api/membership")
+    @PutMapping("/membership")
     public ResponseEntity<Membership> join(@Valid @RequestBody final JoinDto.Request userDto) {
         return ResponseEntity.ok(jwtService.join(userDto));
     }
 
     // 로그인 -> 스프링 시큐리티 사용자와 비교하여 일치하면 헤더에 JWT 정보를 업데이트 한다.
-    @PostMapping("/api/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginDto.Response> login(@Valid @RequestBody LoginDto.Request loginDto) {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginDto.getNickName(), loginDto.getPassword());
