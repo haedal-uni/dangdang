@@ -2,6 +2,7 @@ package shop.dangdang.controller;
 
 import shop.dangdang.domain.Membership;
 import shop.dangdang.domain.Registry;
+import shop.dangdang.dto.MembershipDto;
 import shop.dangdang.dto.RegistryDto;
 import shop.dangdang.service.RegistryService;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +36,8 @@ public class RegistryController {
 
     //회원가입할 때 정보 가져오기
     @GetMapping("/registry")
-    public List<Membership> puppy() {
-        return registryService.puppy();
+    public Membership getMembership(@RequestBody MembershipDto membershipDto) throws IOException {
+        return registryService.getMembership(membershipDto);
     }
 }
 

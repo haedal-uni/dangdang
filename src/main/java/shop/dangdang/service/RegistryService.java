@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import shop.dangdang.domain.Membership;
 import shop.dangdang.domain.Registry;
+import shop.dangdang.dto.MembershipDto;
 import shop.dangdang.dto.RegistryDto;
 import shop.dangdang.repository.MembershipRepository;
 import shop.dangdang.repository.RegistryRepository;
@@ -41,9 +42,9 @@ public class RegistryService {
     }
 
     //회원가입할 때 정보 가져오기
-    public List<Membership> puppy() {
-        List<Membership> puppy = membershipRepository.findAll();
-        return puppy;
+    public Membership getMembership(MembershipDto membershipDto) {
+        return membershipRepository.findByNickname(membershipDto.getNickname()).orElseThrow(
+                () -> new NullPointerException("해당 닉네임이 존재하지 않습니다.")
+        );
     }
-
 }
