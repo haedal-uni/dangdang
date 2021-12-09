@@ -43,7 +43,7 @@ public class RegistryService {
 
     //회원가입할 때 정보 가져오기
     public Membership getMembership(MembershipDto membershipDto) {
-        return membershipRepository.findByNickname(membershipDto.getNickname()).orElseThrow(
+        return membershipRepository.findByNickName(membershipDto.getNickName()).orElseThrow(
                 () -> new NullPointerException("해당 닉네임이 존재하지 않습니다.")
         );
     }
