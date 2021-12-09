@@ -57,7 +57,7 @@ public class FeedDetailService {
                 () -> new NullPointerException("해당 게시글이 없습니다.")
         );
 
-        Membership loginUser = membershipRepository.findByNickName(userNickName).orElseThrow(
+        Membership loginUser = membershipRepository.findByNickname(userNickName).orElseThrow(
                 () -> new NullPointerException("해당 사용자가 없습니다.")
         );
 
@@ -87,7 +87,7 @@ public class FeedDetailService {
     }
 
     public CommonMsgResponseDto setFeedComment(Long feedIdx, String userNickName, String commentConent) {
-        Membership loginUser = membershipRepository.findByNickName(userNickName).orElseThrow(
+        Membership loginUser = membershipRepository.findByNickname(userNickName).orElseThrow(
                 () -> new NullPointerException("해당 사용자가 없습니다.")
         );
 

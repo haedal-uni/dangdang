@@ -22,22 +22,16 @@ public class RegistryController {
         return registryService.setUpload(uploadDto);
     }
 
-    // 테스트(1개만 갖고 오기)
-    @GetMapping("/test")
-    public Registry doTest(@RequestParam Long idx) {
-        return registryService.doTest(idx);
-    }
-
-    // 테스트2(리스트 전체 가져오기)
-    @GetMapping("/test2")
-    public List<Registry> doTest2() {
-        return registryService.doTest2();
-    }
-
     //회원가입할 때 정보 가져오기
     @GetMapping("/registry")
     public Membership getMembership(@RequestBody MembershipDto membershipDto) throws IOException {
         return registryService.getMembership(membershipDto);
+    }
+
+    // 사진만 전부 가져오기
+    @GetMapping("/photos")
+    public List<Registry> photos(){
+        return registryService.photos();
     }
 }
 

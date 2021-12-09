@@ -1,10 +1,10 @@
 cloud:
   aws:
     credentials:
-      accessKey: 
-      secretKey:
+      accessKey: AKIAWNTRP2Y3XAHLV6DM
+      secretKey: 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
     s3:
-      bucket: dangdang-bucket
+      bucket: myspring2
     region:
       static: ap-northeast-2
     stack:

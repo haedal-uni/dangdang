@@ -24,17 +24,9 @@ public class MainPageService {
                 () -> new NullPointerException("해당 게시글이 없습니다.")
         );
 
-//        List<Registry> registries = registryRepository.findAll();
-//        List<Membership> memberships = membershipRepository.findAll();
-
-        MainPageDto mainPageDto = new MainPageDto(registries.getImage(), registries.getContent(), memberships.getNickName(), memberships.getProfileImgUrl());
+        MainPageDto mainPageDto = new MainPageDto(registries.getImage(), registries.getContent(), memberships.getNickName());
 
         return mainPageDto;
     }
 
-//    // 사용자 정보(사진,별명) main 페이지로 가져오기(전체)
-//    public List<Membership> getUserMainInfo() {
-//        List<Membership> memberships = membershipRepository.findAll();
-//        return memberships;
-//    }
 }

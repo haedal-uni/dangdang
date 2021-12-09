@@ -16,7 +16,7 @@ public class MainPageDto {
     private String nickName;
     private MultipartFile profileimage;
 
-    public MainPageDto(String image, String content, String nickName, String profileImgUrl) {
+    public MainPageDto(String image, String content, String nickName) {
     }
 
 }

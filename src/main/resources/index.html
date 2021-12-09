@@ -1,10 +1,254 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="00만의 셀렉샵">
+    <meta property="og:description" content="관심상품을 선택하고, 최저가 알림을 확인해보세요!">
+    <meta property="og:image" content="images/og_selectshop.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+
+    <script src="basic.js"></script>
+    <title>나만의 셀렉샵</title>
 </head>
+<script>
+    let targetId;
+
+    $(document).ready(function () {
+        // id 가 query 인 녀석 위에서 엔터를 누르면 execSearch() 함수를 실행하라는 뜻입니다.
+        $('#query').on('keypress', function (e) {
+            if (e.key == 'Enter') {
+                execSearch();
+            }
+        });
+        $('#close').on('click', function () {
+            $('#container').removeClass('active');
+        })
+
+        $('.nav div.nav-see').on('click', function () {
+            $('div.nav-see').addClass('active');
+            $('div.nav-search').removeClass('active');
+
+            $('#see-area').show();
+            $('#search-area').hide();
+        })
+        $('.nav div.nav-search').on('click', function () {
+            $('div.nav-see').removeClass('active');
+            $('div.nav-search').addClass('active');
+
+            $('#see-area').hide();
+            $('#search-area').show();
+        })
+
+        $('#see-area').show();
+        $('#search-area').hide();
+
+        showProduct();
+    })
+
+    function showProduct() {
+        var isAdmin = false;
+        if ($('#admin').length === 1) {
+            isAdmin = true
+        }
+
+        var sorting = $("#sorting option:selected").val();
+        var isAsc = $(':radio[name="isAsc"]:checked').val();
+        console.log(sorting, isAsc);
+
+        $('#product-container').empty();
+        $('#search-result-box').empty();
+        $('#pagination').pagination({
+            dataSource: isAdmin ? `/api/admin/products?sortBy=${sorting}&isAsc=${isAsc}` : `/api/products?sortBy=${sorting}&isAsc=${isAsc}`,
+            locator: 'content',
+            alias: {
+                pageNumber: 'page',
+                pageSize: 'size'
+            },
+            totalNumberLocator: (response) => {
+                return response.totalElements;
+            },
+            pageSize: 10,
+            showPrevious: true,
+            showNext: true,
+            ajax: {
+                beforeSend: function() {
+                    $('#product-container').html('상품 불러오는 중...');
+                }
+            },
+            callback: function(data, pagination) {
+                $('#product-container').empty();
+                for (let i = 0; i < data.length; i++) {
+                    let product = data[i];
+                    let tempHtml = addProductItem(product);
+                    $('#product-container').append(tempHtml);
+                }
+            }
+        });
+    }
+
+    function addProductItem(product) {
+        return `<div class="product-card">
+                <div onclick="window.location.href='${product.link}'">
+                    <div class="card-header">
+                        <img src="${product.image}"
+                             alt="">
+                    </div>
+                    <div class="card-body">
+                        <div class="title">
+                            ${product.title}
+                        </div>
+                        <div class="lprice">
+                            <span>${numberWithCommas(product.lprice)}</span>원
+                        </div>
+                        <div class="isgood ${product.lprice > product.myprice ? 'none' : ''}">
+                            최저가
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function execSearch() {
+        let query = $('#query').val();
+        if (query == '') {
+            alert('검색어를 입력해주세요');
+            $('#query').focus();
+            return;
+        }
+        $.ajax({
+            type: 'GET',
+            url: `/api/search?query=${query}`,
+            success: function (response) {
+                $('#search-result-box').empty();
+                for (let i = 0; i < response.length; i++) {
+                    let itemDto = response[i];
+                    let tempHtml = addHTML(itemDto);
+                    $('#search-result-box').append(tempHtml);
+                }
+            }
+        })
+    }
+
+    function addHTML(itemDto) {
+        return `<div class="search-itemDto">
+                <div class="search-itemDto-left">
+                    <img src="${itemDto.image}" alt="">
+                </div>
+                <div class="search-itemDto-center">
+                    <div>${itemDto.title}</div>
+                    <div class="price">
+                        ${numberWithCommas(itemDto.lprice)}
+                        <span class="unit">원</span>
+                    </div>
+                </div>
+                <div class="search-itemDto-right">
+                    <img src="images/icon-save.png" alt="" onclick='addProduct(${JSON.stringify(itemDto)})'>
+                </div>
+            </div>`
+    }
+
+    function addProduct(itemDto) {
+        $.ajax({
+            type: "POST",
+            url: '/api/products',
+            contentType: "application/json",
+            data: JSON.stringify(itemDto),
+            success: function (response) {
+                $('#container').addClass('active');
+                targetId = response.id;
+            }
+        })
+    }
+
+    function setMyprice() {
+        let myprice = $('#myprice').val();
+        if (myprice == '') {
+            alert('올바른 가격을 입력해주세요');
+            return;
+        }
+        $.ajax({
+            type: "PUT",
+            url: `/api/products/${targetId}`,
+            contentType: "application/json",
+            data: JSON.stringify({myprice: myprice}),
+            success: function (response) {
+                $('#container').removeClass('active');
+                alert('성공적으로 등록되었습니다.');
+                window.location.reload();
+            }
+        })
+    }
+</script>
 <body>
-$END$
+<div class="header" style="position:relative;">
+    <div id="header-title-login-user">
+        <span th:text="${username}"></span> 님의
+    </div>
+    <div id="header-title-select-shop">
+        Select Shop
+    </div>
+    <a id="logout-text" href="/user/logout">
+        로그아웃
+    </a>
+</div>
+<div class="nav">
+    <div class="nav-see active">
+        모아보기
+    </div>
+    <div class="nav-search">
+        탐색하기
+    </div>
+</div>
+<div id="see-area">
+    <div class="pagination">
+        정렬:
+        <select id="sorting" onchange="showProduct()">
+            <option value="id">ID</option>
+            <option value="title">상품명</option>
+            <option value="lprice">최저가</option>
+            <option value="createdAt">생성일</option>
+        </select>
+        <input type="radio" name="isAsc" value="true" onchange="showProduct()" checked /> 오름차순
+        <input type="radio" name="isAsc" value="false" onchange="showProduct()" /> 내림차순
+    </div>
+    <div id="pagination" class="pagination"></div>
+    <ul id="product-container">
+    </ul>
+</div>
+<div id="search-area">
+    <div>
+        <input type="text" id="query">
+        <!--    <img src="images/icon-search.png" alt="">-->
+    </div>
+    <div id="search-result-box">
+    </div>
+    <div id="container" class="popup-container">
+        <div class="popup">
+            <button id="close" class="close">
+                X
+            </button>
+            <h1>⏰최저가 설정하기</h1>
+            <p>최저가를 설정해두면 선택하신 상품의 최저가가 떴을 때<br/> 표시해드려요!</p>
+            <div>
+                <input type="text" id="myprice" placeholder="200,000">원
+            </div>
+            <button class="cta" onclick="setMyprice()">설정하기</button>
+        </div>
+    </div>
+</div>
+<div th:if="${admin}" id="admin" ></div>
 </body>
 </html>
