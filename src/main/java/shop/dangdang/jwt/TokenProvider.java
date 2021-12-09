@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
+//
 @Component
 public class TokenProvider implements InitializingBean {
 
@@ -33,6 +34,7 @@ public class TokenProvider implements InitializingBean {
     private Key key;
 
 
+    // 설정파일로부터 시크릿키와 유효시간을 가져온다. 시간은 초단위
     public TokenProvider(@Value("${jwt.secret}") String secret, @Value("${jwt.token-validity-in-seconds}") long tokenValidityInSeconds) {
         this.secret = secret;
         this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
@@ -44,7 +46,8 @@ public class TokenProvider implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    // createToken 메소드는 Authentication 객체에 포함되어 있는 권한 정보들을 담은 토큰을 생성
+    // createToken 메소드는 Authentication 객체에 포함되어 있는 권한 정보들을 담은 토큰을 생성(헤더에 들어갈 토큰)
+    // 인증 정보 -> 토큰
     public String createToken(Authentication authentication) {
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -62,6 +65,7 @@ public class TokenProvider implements InitializingBean {
     }
 
     // getAuthentication 메소드는 토큰에 담겨있는 권한 정보들을 이용해 Authentication 객체를 리턴
+    // 토큰 -> 인증 정보
     public Authentication getAuthentication(String token) {
         Claims claims = Jwts
                 .parserBuilder()

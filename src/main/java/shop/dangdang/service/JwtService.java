@@ -22,6 +22,7 @@ public class JwtService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    // 가입하기 전 가입 여부를 확인하고 없으면 저장한다.
     @Transactional
     public Membership join(JoinDto.Request requestDto) {
         if (membershipRepository.findOneWithAuthoritiesBynickName(requestDto.getNickName()).orElse(null) != null) {
@@ -29,7 +30,7 @@ public class JwtService {
         }
 
         Authority authority = Authority.builder()
-                .authorityName("ROLE_USER")
+                .authorityName("ROLE_USER")         // 일반 사용자 권한 사용
                 .build();
 
         Membership user = Membership.builder()
@@ -41,15 +42,5 @@ public class JwtService {
                 .build();
 
         return membershipRepository.save(user);
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<Membership> getUserWithAuthorities(String username) {
-        return membershipRepository.findOneWithAuthoritiesBynickName(username);
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<Membership> getMyUserWithAuthorities() {
-        return SecurityUtil.getCurrentUsername().flatMap(membershipRepository::findOneWithAuthoritiesBynickName);
     }
 }

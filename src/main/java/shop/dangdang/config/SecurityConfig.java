@@ -34,18 +34,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    // web 요청에 대해서 시큐리티 설정을 적용할 수 있음
     @Override
     public void configure(WebSecurity web) {
         web
                 .ignoring()
                 .antMatchers(
-                        "/h2-console/**"
+                        "/h2-console/**"        // h2 콘솔 접속할 수 있도록 예외
                 );
-
-        // "/h2-console/**"
-        // ,"/favicon.ico"
     }
 
+    // http 요청에 대해서 시큐리티 설정을 적용할 수 있음
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -66,13 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/api/hello").permitAll()
-//                .antMatchers("/api/authenticate").permitAll()
-//                .antMatchers("/api/signup").permitAll()
                 .antMatchers("/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().authenticated()                       // 그 외의 어떤 요청이든 다 인증을 적용함
 
                 .and()
-                .apply(new JwtSecurityConfig(tokenProvider));
+                .apply(new JwtSecurityConfig(tokenProvider));       //  JWT 필터 추가
     }
 }

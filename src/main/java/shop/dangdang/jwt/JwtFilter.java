@@ -25,6 +25,7 @@ public class JwtFilter extends GenericFilterBean {
     }
 
     // doFilter 메소드는 jwt 토큰의 인증 정보를 현재 실행중인 스레드 ( Security Context ) 에 저장
+    // 요청헤더에 JWT관련 정보가 있는지 요청마다 확인하고 있으면 JWT 인증 정보를 쓰레드에 저장한다.
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;

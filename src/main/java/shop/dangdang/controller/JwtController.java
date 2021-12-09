@@ -31,11 +31,13 @@ public class JwtController {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
     }
 
+    // 가입
     @PutMapping("/api/membership")
     public ResponseEntity<Membership> join(@Valid @RequestBody final JoinDto.Request userDto) {
         return ResponseEntity.ok(jwtService.join(userDto));
     }
 
+    // 로그인 -> 스프링 시큐리티 사용자와 비교하여 일치하면 헤더에 JWT 정보를 업데이트 한다.
     @PostMapping("/api/login")
     public ResponseEntity<LoginDto.Response> login(@Valid @RequestBody LoginDto.Request loginDto) {
 
@@ -50,17 +52,5 @@ public class JwtController {
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
         return new ResponseEntity<>(new LoginDto.Response(200L, "로그인에 성공했습니다", jwt), httpHeaders, HttpStatus.OK);
-    }
-
-    @GetMapping("/user")
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<Membership> getMyUserInfo() {
-        return ResponseEntity.ok(jwtService.getMyUserWithAuthorities().get());
-    }
-
-    @GetMapping("/user/{username}")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public ResponseEntity<Membership> getUserInfo(@PathVariable String username) {
-        return ResponseEntity.ok(jwtService.getUserWithAuthorities(username).get());
     }
 }

@@ -38,20 +38,20 @@ public class TestDataRunner implements ApplicationRunner {
 
         Membership user = new Membership("manijang2", passwordEncoder.encode("1234"), "manijang2@naver.com", true, Collections.singleton(authority));
         membershipRepository.save(user);
-
-        String main_image_path = "img03.jpg";
-        String content = "내용_01";
-        String address = "서울시 마포구 아현아이파크";
-
-        Feed feed = new Feed(user, main_image_path, content, address);
-        feedRepository.save(feed);
-
-        FeedLikeUser feedLikeUser = new FeedLikeUser(feed, user);
-        feedLikeUserRepository.save(feedLikeUser);
-
-        Comment comment1 = new Comment(user, "코멘트 내용 01", feed);
-        commentRepository.save(comment1);
-        Comment comment2 = new Comment(user, "코멘트 내용 02", feed);
-        commentRepository.save(comment2);
+//
+//        String main_image_path = "img03.jpg";
+//        String content = "내용_01";
+//        String address = "서울시 마포구 아현아이파크";
+//
+//        Feed feed = new Feed(user, main_image_path, content, address);
+//        feedRepository.save(feed);
+//
+//        FeedLikeUser feedLikeUser = new FeedLikeUser(feed, user);
+//        feedLikeUserRepository.save(feedLikeUser);
+//
+//        Comment comment1 = new Comment(user, "코멘트 내용 01", feed);
+//        commentRepository.save(comment1);
+//        Comment comment2 = new Comment(user, "코멘트 내용 02", feed);
+//        commentRepository.save(comment2);
     }
 }

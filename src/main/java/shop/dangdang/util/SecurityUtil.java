@@ -15,6 +15,7 @@ public class SecurityUtil {
     private SecurityUtil() {
     }
 
+    // 사용자 정보를 가져온다.
     public static Optional<String> getCurrentUsername() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
