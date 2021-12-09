@@ -19,14 +19,5 @@ public class DangDangApplication {
         new SpringApplicationBuilder(DangDangApplication.class)
                 .properties(APPLICATION_LOCATIONS)
                 .run(args);
-
-        System.out.println("1234");
-
-        //        Authority authority = Authority.builder()
-//                .authorityName("ROLE_USER")
-//                .build();
-//
-//        Membership user = new Membership("manijang2", passwordEncoder.encode("1234"), "manijang2@naver.com", true, Collections.singleton(authority));
-//        membershipRepository.save(user);
     }
 }
