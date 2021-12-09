@@ -17,11 +17,11 @@ public class MainPageService {
     // 사진 정보 main 페이지로 가져오기(전체)
     public MainPageDto getMainInfo(Long registryIdx) {
         Registry registries = registryRepository.findById(registryIdx).orElseThrow(
-                () -> new NullPointerException("해당 게시글이 없습니다.")
+                () -> new NullPointerException("해당 아이디가 없습니다.")
         );
 
         Membership memberships = membershipRepository.findById(registryIdx).orElseThrow(
-                () -> new NullPointerException("해당 게시글이 없습니다.")
+                () -> new NullPointerException("해당 아이디가 없습니다.")
         );
 
         MainPageDto mainPageDto = new MainPageDto(registries.getImage(), registries.getContent(), memberships.getNickName());
