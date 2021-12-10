@@ -1,10 +1,10 @@
 cloud:
   aws:
     credentials:
-      accessKey: 
-      secretKey:
+      accessKey: AKIAZLIHBH3RSZLHHAYX
+      secretKey: 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
     s3:
-      bucket: dangdang-bucket
+      bucket: dangdang-s3
     region:
       static: ap-northeast-2
     stack:

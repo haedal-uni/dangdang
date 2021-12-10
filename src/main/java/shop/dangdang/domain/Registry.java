@@ -39,6 +39,7 @@ public class Registry extends Timestamped {
         this.address = uploadDto.getAddress();
         this.content = uploadDto.getContent();
         this.puppy = uploadDto.getPuppy();
+        this.nickname = uploadDto.getNickname();
         this.image = image;
     }
 }
