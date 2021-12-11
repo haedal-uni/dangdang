@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import shop.dangdang.dto.RegistryDto;
 
 import javax.persistence.*;
+import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,14 @@ public class Feed {
         this.mainImagePath = mainImagePath;
         this.content = content;
         this.address = address;
+        this.likeCount = 0L;
+    }
+
+    public Feed(RegistryDto registryDto, String image, Membership writer) {
+        setWriter(writer);
+        this.mainImagePath = image;
+        this.content = registryDto.getContent();
+        this.address = registryDto.getAddress();
         this.likeCount = 0L;
     }
 
