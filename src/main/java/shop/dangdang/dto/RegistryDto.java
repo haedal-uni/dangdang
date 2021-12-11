@@ -10,5 +10,6 @@ public class RegistryDto {
     private String address;
     private String content;
     private String puppy;
+    private String nickname;
     private MultipartFile image;
 }

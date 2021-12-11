@@ -45,7 +45,7 @@ public class FeedDetailService {
                 feed.getLikeCount(),
                 feed.getWriter().getNickName(),
                 feed.getCreatedDate().toString(),
-                feed.getWriter().getProfileImgName(),
+                null,
                 feed.getAddress(),
                 feed.getContent()
         );
