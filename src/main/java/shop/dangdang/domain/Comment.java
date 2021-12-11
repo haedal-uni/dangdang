@@ -1,4 +1,4 @@
-package com.sparta.dangdang.domain;
+package shop.dangdang.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -6,12 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Entity
@@ -25,7 +22,7 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "commentUser")
     @JsonManagedReference
-    User commentUser;       // 댓글 사용자
+    Membership commentUser;       // 댓글 사용자
 
     @ManyToOne
     @JoinColumn(name = "feed")
@@ -39,7 +36,7 @@ public class Comment {
     @CreatedDate
     LocalDateTime createDate;
 
-    public Comment(User commentUser, String content, Feed feed) {
+    public Comment(Membership commentUser, String content, Feed feed) {
         this.commentUser = commentUser;
         this.content = content;
         writeComment(feed);

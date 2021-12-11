@@ -10,7 +10,7 @@ public class FrontController {
         return "index";
     }
 
-    @GetMapping("/registry")
+    @GetMapping("/writer")
     public String getPageRegistry(){
         return "registry";
     }

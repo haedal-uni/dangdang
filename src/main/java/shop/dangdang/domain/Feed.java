@@ -1,4 +1,4 @@
-package com.sparta.dangdang.domain;
+package shop.dangdang.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import shop.dangdang.dto.RegistryDto;
 
 import javax.persistence.*;
+import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class Feed {
 
     @ManyToOne
     @JoinColumn(name = "writerIdx")
-    private User writer;                // 글 작성자
+    private Membership writer;                // 글 작성자
     @CreatedDate
     private LocalDateTime createdDate;  // 글 생성일자
     @Column(nullable = true)
@@ -37,13 +39,13 @@ public class Feed {
     private Long likeCount;             // 글 좋아요 개수
 
     @OneToMany(mappedBy = "feed")
-    private final List<FeedLikeUser> likeUsers = new ArrayList<>();
+    private final List<shop.dangdang.domain.FeedLikeUser> likeUsers = new ArrayList<>();
 
     @OneToMany(mappedBy = "feed")
     @JsonBackReference
     private final List<Comment> comments = new ArrayList<>();
 
-    public Feed(User writer, String mainImagePath, String content, String address) {
+    public Feed(Membership writer, String mainImagePath, String content, String address) {
         setWriter(writer);
         this.mainImagePath = mainImagePath;
         this.content = content;
@@ -51,7 +53,15 @@ public class Feed {
         this.likeCount = 0L;
     }
 
-    public void setWriter(User writer) {
+    public Feed(RegistryDto registryDto, String image, Membership writer) {
+        setWriter(writer);
+        this.mainImagePath = image;
+        this.content = registryDto.getContent();
+        this.address = registryDto.getAddress();
+        this.likeCount = 0L;
+    }
+
+    public void setWriter(Membership writer) {
         this.writer = writer;
 
         if(!writer.getWrittenFeeds().contains(this)) {

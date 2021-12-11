@@ -17,7 +17,11 @@ import javax.persistence.*;
 public class Registry extends Timestamped {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @Column(name = "RegistryId")
     private Long idx;
+
+    @Column(nullable = true)
+    private String nickname;
 
     @Column(nullable = false)
     private String address;
@@ -35,6 +39,7 @@ public class Registry extends Timestamped {
         this.address = uploadDto.getAddress();
         this.content = uploadDto.getContent();
         this.puppy = uploadDto.getPuppy();
+        this.nickname = uploadDto.getNickname();
         this.image = image;
     }
 }

@@ -2,8 +2,8 @@ package shop.dangdang.controller;
 
 import shop.dangdang.domain.Membership;
 import shop.dangdang.domain.Registry;
+import shop.dangdang.dto.MembershipDto;
 import shop.dangdang.dto.RegistryDto;
-import shop.dangdang.service.MembershipService;
 import shop.dangdang.service.RegistryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 public class RegistryController {
     private final RegistryService registryService;
-    private final MembershipService membershipService;
 
     @PostMapping("/registry") //@RequestParam이 여러개 있다. -> @ModelAttribute
     public Registry setUpload(@ModelAttribute RegistryDto uploadDto) throws IOException{
@@ -36,9 +35,9 @@ public class RegistryController {
     }
 
     //회원가입할 때 정보 가져오기
-    @GetMapping("/api/membership")
-    public List<Membership> puppy() {
-        return membershipService.puppy();
+    @GetMapping("/registry")
+    public Membership getMembership(@RequestBody MembershipDto membershipDto) throws IOException {
+        return registryService.getMembership(membershipDto);
     }
 }
 
