@@ -1,7 +1,13 @@
-# DangDang
-Our website is for pets.             
-We call our puppies by various nicknames, such as dang-dang and mung-mung.              
-Our website was also created with this in mind.
+# DangDang (Spring)
+- Spring Boot             
+스프링 부트는 많은 설정을 기본적으로 갖추고 있습니다.      
+스프링 부트에는 Apache Tomcat이 내장되어 있습니다.   
+ 
+- Spring Data JPA                
+스프링 데이터 JPA는 JPA를 더 쉽고 편하게 사용할 수 있게 해줍니다.
+
+
+
 
 <br>
 
